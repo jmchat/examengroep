@@ -17,6 +17,7 @@ import {
   Clock,
   ChevronRight,
   LogOut,
+  Lock,
   BookOpen,
   CheckCircle2,
   Sparkles,
@@ -85,6 +86,90 @@ export default async function DashboardPage() {
               totalExercises
             )
             const Icon = workshopIcons[index] || BookOpen
+            // Only session 1 is unlocked for participants; trainers see all
+            const isLocked = user.role !== 'trainer' && workshop.id > 1
+
+            const cardContent = (
+              <Card className={`h-full transition-shadow ${isLocked ? 'opacity-50' : 'hover:shadow-md'}`}>
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className={`flex size-10 items-center justify-center rounded-lg ${isLocked ? 'bg-muted' : 'bg-primary/10'}`}>
+                      {isLocked
+                        ? <Lock className="size-5 text-muted-foreground" />
+                        : <Icon className="size-5 text-primary" />}
+                    </div>
+                    <Badge variant="secondary">
+                      Sessie {workshop.id}
+                    </Badge>
+                  </div>
+                  <CardTitle className="mt-3">
+                    {workshop.title}
+                  </CardTitle>
+                  <CardDescription>
+                    {workshop.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {/* Date and time */}
+                    <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1.5">
+                        <Calendar className="size-3.5" />
+                        {workshop.date}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="size-3.5" />
+                        {workshop.time}
+                      </span>
+                    </div>
+
+                    {isLocked ? (
+                      <div className="flex items-center gap-1.5 pt-1 text-sm text-muted-foreground">
+                        <Lock className="size-3.5" />
+                        Beschikbaar na de vorige sessie
+                      </div>
+                    ) : (
+                      <>
+                        {/* Progress bar */}
+                        <div>
+                          <div className="mb-1 flex items-center justify-between text-xs">
+                            <span className="text-muted-foreground">
+                              Voortgang
+                            </span>
+                            <span className="font-medium text-foreground">
+                              {completed}/{totalExercises}
+                            </span>
+                          </div>
+                          <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                            <div
+                              className="h-full rounded-full bg-primary transition-all"
+                              style={{
+                                width: `${totalExercises > 0 ? (completed / totalExercises) * 100 : 0}%`,
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        {/* CTA */}
+                        <div className="flex items-center justify-end pt-1 text-sm font-medium text-primary transition-colors
+                                        group-hover:text-primary/80">
+                          Bekijk workshop
+                          <ChevronRight className="ml-0.5 size-4" />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            )
+
+            if (isLocked) {
+              return (
+                <div key={workshop.id} className="cursor-not-allowed">
+                  {cardContent}
+                </div>
+              )
+            }
 
             return (
               <Link
@@ -92,67 +177,7 @@ export default async function DashboardPage() {
                 href={`/workshop/${workshop.id}`}
                 className="group"
               >
-                <Card className="h-full transition-shadow
-                                 hover:shadow-md">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-                        <Icon className="size-5 text-primary" />
-                      </div>
-                      <Badge variant="secondary">
-                        Sessie {workshop.id}
-                      </Badge>
-                    </div>
-                    <CardTitle className="mt-3">
-                      {workshop.title}
-                    </CardTitle>
-                    <CardDescription>
-                      {workshop.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      {/* Date and time */}
-                      <div className="flex flex-col gap-1 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1.5">
-                          <Calendar className="size-3.5" />
-                          {workshop.date}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <Clock className="size-3.5" />
-                          {workshop.time}
-                        </span>
-                      </div>
-
-                      {/* Progress bar */}
-                      <div>
-                        <div className="mb-1 flex items-center justify-between text-xs">
-                          <span className="text-muted-foreground">
-                            Voortgang
-                          </span>
-                          <span className="font-medium text-foreground">
-                            {completed}/{totalExercises}
-                          </span>
-                        </div>
-                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                          <div
-                            className="h-full rounded-full bg-primary transition-all"
-                            style={{
-                              width: `${totalExercises > 0 ? (completed / totalExercises) * 100 : 0}%`,
-                            }}
-                          />
-                        </div>
-                      </div>
-
-                      {/* CTA */}
-                      <div className="flex items-center justify-end pt-1 text-sm font-medium text-primary transition-colors
-                                      group-hover:text-primary/80">
-                        Bekijk workshop
-                        <ChevronRight className="ml-0.5 size-4" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                {cardContent}
               </Link>
             )
           })}

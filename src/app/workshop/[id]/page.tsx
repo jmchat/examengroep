@@ -26,6 +26,11 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
 
   if (!workshop) notFound()
 
+  // Only session 1 is accessible for participants; trainers can access all
+  if (user.role !== 'trainer' && workshopId > 1) {
+    redirect('/dashboard')
+  }
+
   const progress = await getProgress(user.id)
 
   // Build a set of completed exercise IDs for this workshop
