@@ -1,21 +1,22 @@
 import { cookies } from 'next/headers'
-import { seedUsers, simpleHash, type User } from '@/db/seed-users'
+import bcrypt from 'bcryptjs'
+import { getDb } from './db'
 
 const SESSION_COOKIE = 'examengroep_session'
 
-// Simple hash-based password verification for in-memory store
-// Replace with bcrypt when DB is connected
-export function hashPassword(password: string): string {
-  return simpleHash(password)
+export interface User {
+  id: number
+  email: string
+  name: string
+  role: 'participant' | 'trainer'
 }
 
-export function verifyPassword(password: string, hash: string): boolean {
-  return simpleHash(password) === hash
+export async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  return bcrypt.compare(password, hash)
 }
 
 export async function createSession(userId: number): Promise<void> {
   const cookieStore = await cookies()
-  // Simple session token: base64 encoded userId + timestamp
   const token = Buffer.from(
     JSON.stringify({ userId, createdAt: Date.now() })
   ).toString('base64')
@@ -25,7 +26,7 @@ export async function createSession(userId: number): Promise<void> {
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
+    maxAge: 60 * 60 * 24 * 7,
   })
 }
 
@@ -37,8 +38,10 @@ export async function getSession(): Promise<User | null> {
 
   try {
     const { userId } = JSON.parse(Buffer.from(token, 'base64').toString())
-    const user = seedUsers.find((u) => u.id === userId)
-    return user || null
+    const sql = getDb()
+    const rows = await sql`SELECT id, email, name, role FROM users WHERE id = ${userId}`
+    if (rows.length === 0) return null
+    return rows[0] as User
   } catch {
     return null
   }
@@ -49,7 +52,9 @@ export async function logout(): Promise<void> {
   cookieStore.delete(SESSION_COOKIE)
 }
 
-// Find user by email from in-memory store
-export function findUserByEmail(email: string): User | undefined {
-  return seedUsers.find((u) => u.email.toLowerCase() === email.toLowerCase())
+export async function findUserByEmail(email: string) {
+  const sql = getDb()
+  const rows = await sql`SELECT id, email, name, role, password_hash FROM users WHERE LOWER(email) = ${email.toLowerCase()}`
+  if (rows.length === 0) return undefined
+  return rows[0] as User & { password_hash: string }
 }

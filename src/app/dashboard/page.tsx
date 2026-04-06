@@ -53,7 +53,7 @@ export default async function DashboardPage() {
           <div className="flex items-center gap-3">
             <div className="text-right">
               <p className="text-sm font-medium text-foreground">{user.name}</p>
-              <p className="text-xs text-muted-foreground">{user.title}</p>
+              <p className="text-xs text-muted-foreground capitalize">{user.role}</p>
             </div>
             <form action={logoutAction}>
               <Button variant="ghost" size="icon" type="submit">

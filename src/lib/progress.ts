@@ -1,6 +1,4 @@
-import { cookies } from 'next/headers'
-
-const PROGRESS_COOKIE = 'examengroep_progress'
+import { getDb } from './db'
 
 export interface ProgressEntry {
   workshopId: number
@@ -8,21 +6,18 @@ export interface ProgressEntry {
   completed: boolean
 }
 
-// Store progress in a cookie as JSON for now
-// Will be replaced with DB queries when Neon is connected
 export async function getProgress(userId: number): Promise<ProgressEntry[]> {
-  const cookieStore = await cookies()
-  const raw = cookieStore.get(PROGRESS_COOKIE)?.value
-  if (!raw) return []
-
-  try {
-    const all: Record<string, ProgressEntry[]> = JSON.parse(
-      Buffer.from(raw, 'base64').toString()
-    )
-    return all[String(userId)] || []
-  } catch {
-    return []
-  }
+  const sql = getDb()
+  const rows = await sql`
+    SELECT workshop_id, exercise_id, completed
+    FROM progress
+    WHERE user_id = ${userId}
+  `
+  return rows.map((r) => ({
+    workshopId: r.workshop_id as number,
+    exerciseId: r.exercise_id as string,
+    completed: r.completed as boolean,
+  }))
 }
 
 export async function toggleProgress(
@@ -30,42 +25,27 @@ export async function toggleProgress(
   workshopId: number,
   exerciseId: string
 ): Promise<boolean> {
-  const cookieStore = await cookies()
-  const raw = cookieStore.get(PROGRESS_COOKIE)?.value
-  let all: Record<string, ProgressEntry[]> = {}
+  const sql = getDb()
 
-  if (raw) {
-    try {
-      all = JSON.parse(Buffer.from(raw, 'base64').toString())
-    } catch {
-      all = {}
-    }
-  }
+  const existing = await sql`
+    SELECT id, completed FROM progress
+    WHERE user_id = ${userId} AND workshop_id = ${workshopId} AND exercise_id = ${exerciseId}
+  `
 
-  const key = String(userId)
-  if (!all[key]) all[key] = []
-
-  const existing = all[key].find(
-    (p) => p.workshopId === workshopId && p.exerciseId === exerciseId
-  )
-
-  if (existing) {
-    existing.completed = !existing.completed
+  if (existing.length > 0) {
+    const newCompleted = !existing[0].completed
+    await sql`
+      UPDATE progress SET completed = ${newCompleted}, updated_at = NOW()
+      WHERE id = ${existing[0].id}
+    `
+    return newCompleted
   } else {
-    all[key].push({ workshopId, exerciseId, completed: true })
+    await sql`
+      INSERT INTO progress (user_id, workshop_id, exercise_id, completed)
+      VALUES (${userId}, ${workshopId}, ${exerciseId}, true)
+    `
+    return true
   }
-
-  const newCompleted = existing ? existing.completed : true
-
-  cookieStore.set(PROGRESS_COOKIE, Buffer.from(JSON.stringify(all)).toString('base64'), {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    maxAge: 60 * 60 * 24 * 90, // 90 days
-  })
-
-  return newCompleted
 }
 
 export function getWorkshopProgress(

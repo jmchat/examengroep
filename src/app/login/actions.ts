@@ -18,12 +18,12 @@ export async function loginAction(
     return { error: 'Vul je e-mailadres en wachtwoord in.' }
   }
 
-  const user = findUserByEmail(email)
+  const user = await findUserByEmail(email)
   if (!user) {
     return { error: 'Ongeldig e-mailadres of wachtwoord.' }
   }
 
-  const valid = verifyPassword(password, user.passwordHash)
+  const valid = await verifyPassword(password, user.password_hash)
   if (!valid) {
     return { error: 'Ongeldig e-mailadres of wachtwoord.' }
   }
