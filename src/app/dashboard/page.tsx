@@ -13,7 +13,6 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
-  GraduationCap,
   Calendar,
   Clock,
   ChevronRight,
@@ -35,28 +34,24 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen bg-secondary/30">
       {/* Header */}
-      <header className="border-b bg-card">
+      <header className="bg-[#9e1357]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3
                         sm:px-6">
-          <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
-              <GraduationCap className="size-5 text-primary-foreground" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold leading-none text-foreground">
-                Examengroep
-              </p>
-              <p className="text-xs text-muted-foreground">AI Workshops</p>
-            </div>
+          <div className="flex items-center gap-4">
+            <p className="font-[family-name:var(--font-logo)] text-lg font-light tracking-[0.25em] uppercase text-white">
+              Examengroep
+            </p>
+            <span className="hidden text-xs text-white/60
+                             sm:inline">AI Workshops</span>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="text-sm font-medium text-foreground">{user.name}</p>
-              <p className="text-xs text-muted-foreground capitalize">{user.role}</p>
+              <p className="text-sm font-medium text-white">{user.name}</p>
+              <p className="text-xs text-white/60 capitalize">{user.role}</p>
             </div>
             <form action={logoutAction}>
-              <Button variant="ghost" size="icon" type="submit">
+              <Button variant="ghost" size="icon" type="submit" className="text-white hover:bg-white/10 hover:text-white">
                 <LogOut className="size-4" />
               </Button>
             </form>

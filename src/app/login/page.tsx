@@ -12,7 +12,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { loginAction, type LoginState } from './actions'
-import { GraduationCap } from 'lucide-react'
 
 const initialState: LoginState = {}
 
@@ -24,13 +23,12 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-6">
         {/* Brand header */}
         <div className="text-center">
-          <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-xl bg-primary">
-            <GraduationCap className="size-8 text-primary-foreground" />
+          <div className="mx-auto mb-6 inline-flex items-center justify-center rounded-xl bg-[#9e1357] px-6 py-3">
+            <span className="font-[family-name:var(--font-logo)] text-xl font-light tracking-[0.25em] uppercase text-white">
+              Examengroep
+            </span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">
-            Examengroep
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             AI Workshops
           </p>
         </div>

@@ -6,7 +6,6 @@ import { getWorkshop } from '@/lib/workshops'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
-  GraduationCap,
   ArrowLeft,
   Calendar,
   Clock,
@@ -39,22 +38,18 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
   return (
     <div className="min-h-screen bg-secondary/30">
       {/* Header */}
-      <header className="border-b bg-card">
+      <header className="bg-[#9e1357]">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3
                         sm:px-6">
-          <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
-              <GraduationCap className="size-5 text-primary-foreground" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold leading-none text-foreground">
-                Examengroep
-              </p>
-              <p className="text-xs text-muted-foreground">AI Workshops</p>
-            </div>
+          <div className="flex items-center gap-4">
+            <p className="font-[family-name:var(--font-logo)] text-lg font-light tracking-[0.25em] uppercase text-white">
+              Examengroep
+            </p>
+            <span className="hidden text-xs text-white/60
+                             sm:inline">AI Workshops</span>
           </div>
           <Link href="/dashboard">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 hover:text-white">
               <ArrowLeft className="mr-1.5 size-3.5" />
               Dashboard
             </Button>
