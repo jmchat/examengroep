@@ -49,7 +49,7 @@ export default async function DashboardPage() {
           <div className="flex items-center gap-3">
             <div className="text-right">
               <p className="text-sm font-medium text-white">{user.name}</p>
-              <p className="text-xs text-white/60 capitalize">{user.role}</p>
+              <p className="text-xs text-white/60">{user.role === 'trainer' ? 'Trainer' : 'Deelnemer'}</p>
             </div>
             <form action={logoutAction}>
               <Button variant="ghost" size="icon" type="submit" className="text-white hover:bg-white/10 hover:text-white">
