@@ -56,15 +56,23 @@ export default function ExerciseCard({
   }
 
   return (
-    <Card className={completed ? 'ring-primary/30' : ''}>
+    <Card className={completed ? 'border-primary/30 bg-primary/[0.02]' : ''}>
       <CardHeader>
-        <div className="flex items-start justify-between gap-3">
+        <button
+          type="button"
+          className="flex w-full cursor-pointer items-start justify-between gap-3 text-left"
+          onClick={() => setExpanded(!expanded)}
+        >
           <div className="flex items-start gap-3">
-            <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-              <Icon className="size-4 text-primary" />
+            <div className={`mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg ${completed ? 'bg-primary text-primary-foreground' : 'bg-primary/10'}`}>
+              {completed
+                ? <CheckCircle2 className="size-4" />
+                : <Icon className="size-4 text-primary" />}
             </div>
             <div>
-              <CardTitle className="text-base">{exercise.title}</CardTitle>
+              <CardTitle className={`text-base ${completed ? 'text-primary' : ''}`}>
+                {exercise.title}
+              </CardTitle>
               <div className="mt-1.5 flex items-center gap-2">
                 <Badge variant={config.variant}>
                   {config.label}
@@ -75,21 +83,23 @@ export default function ExerciseCard({
                     {exercise.duration}
                   </span>
                 )}
+                {completed && !expanded && (
+                  <span className="flex items-center gap-1 text-xs font-medium text-primary">
+                    <CheckCircle2 className="size-3" />
+                    Afgerond
+                  </span>
+                )}
               </div>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={() => setExpanded(!expanded)}
-          >
+          <div className="mt-1 shrink-0">
             {expanded ? (
-              <ChevronUp className="size-4" />
+              <ChevronUp className="size-4 text-muted-foreground" />
             ) : (
-              <ChevronDown className="size-4" />
+              <ChevronDown className="size-4 text-muted-foreground" />
             )}
-          </Button>
-        </div>
+          </div>
+        </button>
       </CardHeader>
 
       {expanded && (
