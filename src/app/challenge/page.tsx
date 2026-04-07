@@ -11,11 +11,11 @@ import { Badge } from '@/components/ui/badge'
 import {
   Lock,
   Binary,
-  ArrowLeftRight,
+  Shuffle,
   RotateCcw,
-  Type,
-  Puzzle,
-  Hash,
+  Layers,
+  Radio,
+  Replace,
   Lightbulb,
   ChevronDown,
   ChevronUp,
@@ -25,11 +25,12 @@ import {
 interface ChallengeCard {
   name: string
   email: string
-  type: string
   difficulty: number
+  steps: number
   icon: typeof Binary
   color: string
   puzzle: string
+  puzzleNote?: string
   hints: string[]
 }
 
@@ -37,90 +38,95 @@ const challenges: ChallengeCard[] = [
   {
     name: 'Esther',
     email: 'esther@examengroep.nl',
-    type: 'Base64 encoding',
-    difficulty: 1,
+    difficulty: 2,
+    steps: 1,
     icon: Binary,
-    color: 'bg-blue-500',
-    puzzle: 'RXN0aGVyMjAyNiE=',
+    color: 'bg-blue-600',
+    puzzle: '4573746865723230323621',
     hints: [
-      'Dit is een Base64-gecodeerde tekst',
-      'Vraag aan Claude: "Kun je deze Base64 string decoderen?"',
+      'Dit is geen willekeurige reeks. Elk teken is een hexadecimaal cijfer (0-9, a-f).',
+      'Programmeurs gebruiken dit systeem om tekst op te slaan. Twee tekens = één karakter.',
     ],
   },
   {
     name: 'Lisa',
     email: 'lisa@examengroep.nl',
-    type: 'Omgekeerde tekst',
-    difficulty: 1,
-    icon: ArrowLeftRight,
-    color: 'bg-emerald-500',
-    puzzle: '!6202asiL',
+    difficulty: 2,
+    steps: 1,
+    icon: Shuffle,
+    color: 'bg-emerald-600',
+    puzzle: 'Yvfn2026!',
+    puzzleNote: 'Let op: de cijfers en het uitroepteken zijn NIET versleuteld, alleen de letters.',
     hints: [
-      'Lees de tekst eens van rechts naar links...',
-      'Vraag aan Claude: "Kun je deze tekst omdraaien?"',
+      'Het alfabet is verschoven. A is niet meer A.',
+      'Er is precies één verschuiving waarbij het alfabet perfect in twee helften splitst.',
     ],
   },
   {
     name: 'Debbie',
     email: 'debbie@examengroep.nl',
-    type: 'Caesar cipher',
     difficulty: 2,
-    icon: RotateCcw,
-    color: 'bg-violet-500',
-    puzzle: 'Gheelh2026!',
+    steps: 1,
+    icon: Binary,
+    color: 'bg-violet-600',
+    puzzle: '01000100 01100101 01100010 01100010 01101001 01100101 00110010 00110000 00110010 00110110 00100001',
     hints: [
-      'Dit is een Caesar cipher — elke letter is een vast aantal posities verschoven in het alfabet',
-      'Vraag aan Claude: "Dit lijkt een Caesar cipher. Kun je alle mogelijke verschuivingen proberen?"',
+      'Computers denken in twee getallen. Dit is de taal van machines.',
+      'Elke groep van 8 cijfers is één karakter.',
     ],
   },
   {
     name: 'Jeroen',
     email: 'jeroen@examengroep.nl',
-    type: 'Eerste letters',
-    difficulty: 2,
-    icon: Type,
-    color: 'bg-amber-500',
-    puzzle: 'Jouw examens resulteren op elke niveautest. Voeg het huidige jaar + ! toe aan de eerste letters.',
+    difficulty: 3,
+    steps: 2,
+    icon: Layers,
+    color: 'bg-amber-600',
+    puzzle: 'V3JlYnJhMjAyNiE=',
+    puzzleNote: 'Waarschuwing: na de eerste decodering ben je er nog niet. Het resultaat moet nog een keer ontcijferd worden.',
     hints: [
-      'Het eerste deel van je wachtwoord is verstopt in de zin. Kijk naar de eerste letter van elk woord (tot en met de punt).',
-      'Vraag aan Claude: "Wat krijg je als je de eerste letter van de eerste 6 woorden in deze zin pakt, en daar 2026! achter zet?"',
+      'Het = teken aan het einde is een veelvoorkomend kenmerk van een bepaald coderingssysteem.',
+      'Na de eerste stap krijg je iets dat er bijna uitziet als een woord, maar net niet klopt. Dan begint puzzel twee.',
     ],
   },
   {
     name: 'Suzet',
     email: 'suzet@examengroep.nl',
-    type: 'Morse code',
     difficulty: 3,
-    icon: Puzzle,
-    color: 'bg-rose-500',
-    puzzle: '... ..- --.. . - ..--- ----- ..--- -.... -.-.--',
+    steps: 2,
+    icon: Radio,
+    color: 'bg-rose-600',
+    puzzle: 'Tango Echo Zulu Uniform Sierra',
+    puzzleNote: 'Dit zijn 5 woorden. Samen vormen ze 5 letters. Maar de volgorde klopt niet. Voeg daarna het huidige jaar + ! toe.',
     hints: [
-      'Dit is een bekend communicatiesysteem met punten en streepjes',
-      'Vraag aan Claude: "Kun je deze morse code vertalen naar tekst?"',
+      'Piloten en militairen gebruiken dit systeem om letters duidelijk over de radio te communiceren.',
+      'De letters die je krijgt staan in de verkeerde volgorde. Draai ze om.',
     ],
   },
   {
     name: 'Angela',
     email: 'angela@examengroep.nl',
-    type: 'Cijfer-letter substitutie',
     difficulty: 3,
-    icon: Hash,
-    color: 'bg-cyan-500',
-    puzzle: '1-14-7-5-12-1 + het huidige jaar + !',
+    steps: 1,
+    icon: Replace,
+    color: 'bg-cyan-600',
+    puzzle: 'Zmtvoz2026!',
+    puzzleNote: 'De cijfers en het uitroepteken zijn NIET versleuteld. Alleen de letters zijn getransformeerd.',
     hints: [
-      'Elk cijfer staat voor een positie in het alfabet (A=1, B=2, C=3, ...)',
-      'Vraag aan Claude: "Als A=1 en B=2, welk woord vormen de getallen 1-14-7-5-12-1?"',
+      'In dit systeem is het alfabet gespiegeld: de eerste letter wordt de laatste, de tweede wordt de voorlaatste, enzovoort.',
+      'A wordt Z, B wordt Y, C wordt X... en andersom.',
     ],
   },
 ]
 
 function DifficultyDots({ level }: { level: number }) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex items-center gap-1">
+      <span className="text-[10px] text-muted-foreground mr-0.5">Moeilijkheid:</span>
       {[1, 2, 3].map((i) => (
         <div
           key={i}
-          className={`size-1.5 rounded-full ${i <= level ? 'bg-primary' : 'bg-muted'}`}
+          className={`size-2 rounded-full ${i <= level ? 'bg-primary' : 'bg-muted'}`}
         />
       ))}
     </div>
@@ -132,7 +138,7 @@ function ChallengeCardComponent({ challenge }: { challenge: ChallengeCard }) {
   const Icon = challenge.icon
 
   return (
-    <Card className="h-full">
+    <Card className="flex h-full flex-col">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
@@ -144,51 +150,62 @@ function ChallengeCardComponent({ challenge }: { challenge: ChallengeCard }) {
               <p className="text-xs text-muted-foreground">{challenge.email}</p>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-1">
-            <Badge variant="secondary" className="text-xs">
-              {challenge.type}
-            </Badge>
+          <div className="flex flex-col items-end gap-1.5">
+            {challenge.steps > 1 && (
+              <Badge variant="destructive" className="text-[10px]">
+                {challenge.steps} stappen
+              </Badge>
+            )}
             <DifficultyDots level={challenge.difficulty} />
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div>
+      <CardContent className="flex flex-1 flex-col space-y-4">
+        <div className="flex-1">
           <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            Jouw puzzel
+            Versleuteld wachtwoord
           </p>
-          <div className="rounded-lg border bg-muted/30 p-4">
+          <div className="rounded-lg border-2 border-dashed border-primary/20 bg-muted/30 p-4">
             <p className="break-all font-mono text-sm leading-relaxed text-foreground">
               {challenge.puzzle}
             </p>
           </div>
+          {challenge.puzzleNote && (
+            <p className="mt-2 text-xs italic text-muted-foreground">
+              {challenge.puzzleNote}
+            </p>
+          )}
         </div>
 
-        <button
-          type="button"
-          onClick={() => setShowHints(!showHints)}
-          className="flex w-full cursor-pointer items-center gap-1.5 text-xs font-medium text-primary"
-        >
-          <Lightbulb className="size-3.5" />
-          {showHints ? 'Verberg hints' : 'Toon hints'}
-          {showHints ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
-        </button>
+        <div className="pt-2">
+          <button
+            type="button"
+            onClick={() => setShowHints(!showHints)}
+            className="flex w-full cursor-pointer items-center gap-1.5 text-xs font-medium text-primary"
+          >
+            <Lightbulb className="size-3.5" />
+            {showHints ? 'Verberg hints' : 'Ik kom er niet uit — toon hints'}
+            {showHints ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+          </button>
 
-        {showHints && (
-          <div className="space-y-2">
-            {challenge.hints.map((hint, i) => (
-              <div
-                key={i}
-                className="flex gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2"
-              >
-                <Lightbulb className="mt-0.5 size-3.5 shrink-0 text-primary" />
-                <p className="text-xs leading-relaxed text-foreground">
-                  {hint}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
+          {showHints && (
+            <div className="mt-3 space-y-2">
+              {challenge.hints.map((hint, i) => (
+                <div
+                  key={i}
+                  className="flex gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2"
+                >
+                  <span className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-primary/20 text-[10px] font-bold text-primary">
+                    {i + 1}
+                  </span>
+                  <p className="text-xs leading-relaxed text-foreground">
+                    {hint}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
   )
@@ -228,20 +245,34 @@ export default function ChallengePage() {
                          sm:text-3xl">
             Kraak je wachtwoord
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Je wachtwoord is versleuteld. Gebruik Claude om de puzzel op te lossen
-            en in te loggen op het platform. Zoek hieronder je naam en ga aan de slag!
+          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+            Je wachtwoord is versleuteld met een onbekende methode. Gebruik Claude om erachter te komen
+            welke versleuteling is gebruikt en wat je echte wachtwoord is. Zoek hieronder je naam,
+            kopieer de code, en ga aan de slag!
           </p>
-          <a
-            href="https://claude.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-primary
-                       hover:underline"
-          >
-            Open Claude
-            <ExternalLink className="size-3.5" />
-          </a>
+          <div className="mt-4 flex flex-col items-center gap-2
+                          sm:flex-row sm:justify-center sm:gap-4">
+            <a
+              href="https://claude.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white
+                         hover:bg-primary/90"
+            >
+              Open Claude
+              <ExternalLink className="size-3.5" />
+            </a>
+            <span className="text-xs text-muted-foreground">
+              Tip: kopieer je puzzel en vraag Claude om te helpen ontcijferen
+            </span>
+          </div>
+        </div>
+
+        <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-center">
+          <p className="text-sm text-amber-800">
+            <strong>Spelregels:</strong> Los alleen jouw eigen puzzel op. De hints zijn er als je vastloopt —
+            probeer het eerst zonder! Je e-mailadres is je gebruikersnaam.
+          </p>
         </div>
 
         <div className="grid gap-4
@@ -254,10 +285,10 @@ export default function ChallengePage() {
 
         <div className="mt-8 rounded-xl border bg-card p-6 text-center">
           <h2 className="mb-2 text-lg font-semibold text-foreground">
-            Gelukt?
+            Wachtwoord gekraakt?
           </h2>
           <p className="mb-4 text-sm text-muted-foreground">
-            Heb je je wachtwoord gevonden? Ga dan naar het loginscherm en log in.
+            Log in met je e-mailadres en het wachtwoord dat je hebt ontcijferd.
           </p>
           <a
             href="/login"
