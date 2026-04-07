@@ -99,93 +99,6 @@ export const workshops: Workshop[] = [
         },
       },
       {
-        id: 'spiekbriefje',
-        title: 'Spiekbriefje: 5 bouwstenen van een goede prompt',
-        type: 'reference',
-        content: {
-          intro:
-            'Gebruik deze 5 bouwstenen om elke prompt te verbeteren. Hoe meer bouwstenen je gebruikt, hoe beter het resultaat.',
-          table: {
-            headers: ['#', 'Bouwsteen', 'Wat doe je?', 'Voorbeeld'],
-            rows: [
-              [
-                '1',
-                'Rol',
-                'Geef Claude een perspectief',
-                '"Je bent een ervaren examenontwikkelaar voor MBO-niveau 3"',
-              ],
-              [
-                '2',
-                'Taak',
-                'Zeg precies wat je wilt',
-                '"Schrijf een meerkeuzevraag met 4 antwoordopties"',
-              ],
-              [
-                '3',
-                'Context',
-                'Geef achtergrondinformatie',
-                '"Het examen is voor leerlingen die module X hebben afgerond"',
-              ],
-              [
-                '4',
-                'Format',
-                'Beschrijf het gewenste resultaat',
-                '"Geef het in een tabel: vraag, opties A-D, correct antwoord"',
-              ],
-              [
-                '5',
-                'Beperkingen',
-                'Geef randvoorwaarden',
-                '"Gebruik geen vakjargon dat niet in de lesstof voorkomt"',
-              ],
-            ],
-          },
-          checklist: [
-            'Weet Claude wie het is? (Rol)',
-            'Weet Claude wat het moet doen? (Taak)',
-            'Weet Claude voor wie of waarvoor? (Context)',
-            'Weet Claude hoe het resultaat eruit moet zien? (Format)',
-            'Weet Claude wat er niet mag? (Beperkingen)',
-          ],
-          tips: [
-            {
-              situation: 'Resultaat te vaag',
-              response:
-                '"Wees specifieker. Geef concrete voorbeelden."',
-            },
-            {
-              situation: 'Verkeerd niveau',
-              response:
-                '"Dit is te moeilijk/makkelijk voor niveau 3. Pas aan."',
-            },
-            {
-              situation: 'Te lang',
-              response: '"Maak het korter. Maximaal 3 zinnen."',
-            },
-            {
-              situation: 'Verkeerde toon',
-              response:
-                '"Schrijf het formeler / informeler / zakelijker."',
-            },
-            {
-              situation: 'Niet het juiste format',
-              response:
-                '"Gebruik dit format: [beschrijf of plak een voorbeeld]"',
-            },
-            {
-              situation: 'Afleiders te zwak',
-              response:
-                '"De afleiders zijn te makkelijk te herkennen. Maak ze geloofwaardiger."',
-            },
-            {
-              situation: 'Wil een andere aanpak',
-              response:
-                '"Probeer het opnieuw, maar dan vanuit [ander perspectief]."',
-            },
-          ],
-        },
-      },
-      {
         id: 'oefening-1',
         title: 'Van slecht naar goed prompten',
         duration: '15 min',
@@ -251,6 +164,41 @@ export const workshops: Workshop[] = [
           ],
           bonusTip:
             'Je kunt ook meerdere instructies tegelijk geven: "Verbeter de afleiders, maak het niveau geschikter voor MBO-3, en voeg een casusbeschrijving toe." Dit is efficienter als je al weet wat je wilt.',
+        },
+      },
+      {
+        id: 'spiekbriefje',
+        title: 'Spiekbriefje: 5 bouwstenen van een goede prompt',
+        type: 'reference',
+        content: {
+          intro:
+            'Gebruik deze 5 bouwstenen om elke prompt te verbeteren. Hoe meer bouwstenen je gebruikt, hoe beter het resultaat.',
+          table: {
+            headers: ['#', 'Bouwsteen', 'Wat doe je?', 'Voorbeeld'],
+            rows: [
+              ['1', 'Rol', 'Geef Claude een perspectief', '"Je bent een ervaren examenontwikkelaar voor MBO-niveau 3"'],
+              ['2', 'Taak', 'Zeg precies wat je wilt', '"Schrijf een meerkeuzevraag met 4 antwoordopties"'],
+              ['3', 'Context', 'Geef achtergrondinformatie', '"Het examen is voor leerlingen die module X hebben afgerond"'],
+              ['4', 'Format', 'Beschrijf het gewenste resultaat', '"Geef het in een tabel: vraag, opties A-D, correct antwoord"'],
+              ['5', 'Beperkingen', 'Geef randvoorwaarden', '"Gebruik geen vakjargon dat niet in de lesstof voorkomt"'],
+            ],
+          },
+          checklist: [
+            'Weet Claude wie het is? (Rol)',
+            'Weet Claude wat het moet doen? (Taak)',
+            'Weet Claude voor wie of waarvoor? (Context)',
+            'Weet Claude hoe het resultaat eruit moet zien? (Format)',
+            'Weet Claude wat er niet mag? (Beperkingen)',
+          ],
+          tips: [
+            { situation: 'Resultaat te vaag', response: '"Wees specifieker. Geef concrete voorbeelden."' },
+            { situation: 'Verkeerd niveau', response: '"Dit is te moeilijk/makkelijk voor niveau 3. Pas aan."' },
+            { situation: 'Te lang', response: '"Maak het korter. Maximaal 3 zinnen."' },
+            { situation: 'Verkeerde toon', response: '"Schrijf het formeler / informeler / zakelijker."' },
+            { situation: 'Niet het juiste format', response: '"Gebruik dit format: [beschrijf of plak een voorbeeld]"' },
+            { situation: 'Afleiders te zwak', response: '"De afleiders zijn te makkelijk te herkennen. Maak ze geloofwaardiger."' },
+            { situation: 'Wil een andere aanpak', response: '"Probeer het opnieuw, maar dan vanuit [ander perspectief]."' },
+          ],
         },
       },
       {
