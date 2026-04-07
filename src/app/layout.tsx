@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'Examengroep AI Workshops',
   description:
     'Workshop platform voor de AI-trainingssessies van Examengroep. Leer werken met AI-tools voor examens en werkprocessen.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
