@@ -32,8 +32,10 @@ export default function ExerciseList({
           next.delete(exerciseId)
         }
 
-        // Fire confetti when all exercises are completed
-        if (newState && next.size === exercises.length) {
+        // Fire confetti when all actual exercises (not reference/homework) are completed
+        const exerciseOnly = exercises.filter((e) => e.type === 'exercise')
+        const allExercisesDone = exerciseOnly.every((e) => next.has(e.id))
+        if (newState && allExercisesDone) {
           setTimeout(() => {
             // Center burst
             confetti({
