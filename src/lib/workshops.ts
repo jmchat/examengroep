@@ -73,15 +73,15 @@ export const workshops: Workshop[] = [
           sections: [
             {
               heading: 'Kernpunten',
-              text: 'AI is getraind op enorme hoeveelheden tekst. Het is geen database die je doorzoekt, maar een model dat patronen herkent.\n\nAI "hallucineert" soms — het geeft altijd een antwoord, ook als het er eigenlijk geen heeft. Daarom is controleren essentieel.\n\nAI is een gereedschap, geen collega — het denkt niet zelf na. Jij blijft de expert.\n\nHoe beter jouw instructie (prompt), hoe beter het resultaat.',
+              text: 'AI is getraind op enorme hoeveelheden tekst. Het is geen database die je doorzoekt, maar een model dat patronen herkent.\n\nAI "hallucineert" soms , het geeft altijd een antwoord, ook als het er eigenlijk geen heeft. Daarom is controleren essentieel.\n\nAI is een gereedschap, geen collega. Het denkt niet zelf na. Jij blijft de expert.\n\nHoe beter jouw instructie (prompt), hoe beter het resultaat.',
             },
             {
               heading: 'Waarom werken wij met Claude?',
-              text: 'Er zijn meerdere AI-tools (ChatGPT, Gemini, Copilot). Wij werken met Claude van Anthropic, omdat:\n\n• Claude is sterk in lange, complexe teksten — ideaal voor examenmateriaal en documenten\n• Claude volgt instructies nauwkeuriger op — belangrijk als je met vaste formats werkt\n• Claude is voorzichtiger met "verzinnen" — het geeft eerder aan als het iets niet weet',
+              text: 'Er zijn meerdere AI-tools (ChatGPT, Gemini, Copilot). Wij werken met Claude van Anthropic, omdat:\n\n• Claude is sterk in lange, complexe teksten, ideaal voor examenmateriaal en documenten\n• Claude volgt instructies nauwkeuriger op, belangrijk als je met vaste formats werkt\n• Claude is voorzichtiger met "verzinnen", het geeft eerder aan als het iets niet weet',
             },
             {
               heading: 'Claude Cowork: je AI-werkplek',
-              text: 'Cowork is de desktopomgeving van Claude. Hiermee kan Claude direct met je bestanden werken:\n\n• Upload een Word-document, Excel of PDF en laat Claude ermee aan de slag gaan\n• Claude kan documenten lezen, analyseren, herschrijven en nieuwe bestanden maken\n• Je werkt in een project-omgeving — Claude onthoudt de context van je gesprek\n• Alles blijft privé: jouw bestanden worden niet gebruikt om AI te trainen',
+              text: 'Cowork is de desktopomgeving van Claude. Hiermee kan Claude direct met je bestanden werken:\n\n• Upload een Word-document, Excel of PDF en laat Claude ermee aan de slag gaan\n• Claude kan documenten lezen, analyseren, herschrijven en nieuwe bestanden maken\n• Je werkt in een project-omgeving, Claude onthoudt de context van je gesprek\n• Alles blijft privé: jouw bestanden worden niet gebruikt om AI te trainen',
             },
           ],
           table: {
@@ -95,7 +95,7 @@ export const workshops: Workshop[] = [
               ['Taalfouten en stijl checken', 'Autonome beslissingen nemen'],
             ],
           },
-          bonusTip: 'De gouden regel: Vertrouw, maar verifieer. AI levert een eerste versie. Jouw expertise maakt het af. Controleer altijd het resultaat voordat je het gebruikt — vooral bij examens, contracten en communicatie naar buiten.',
+          bonusTip: 'De gouden regel: Vertrouw, maar verifieer. AI levert een eerste versie. Jouw expertise maakt het af. Controleer altijd het resultaat voordat je het gebruikt, vooral bij examens, contracten en communicatie naar buiten.',
         },
       },
       {
