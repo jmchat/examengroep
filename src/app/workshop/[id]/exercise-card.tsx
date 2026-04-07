@@ -33,12 +33,16 @@ interface ExerciseCardProps {
   exercise: Exercise
   workshopId: number
   initialCompleted: boolean
+  userName?: string
+  onToggle?: (exerciseId: string, newState: boolean) => void
 }
 
 export default function ExerciseCard({
   exercise,
   workshopId,
   initialCompleted,
+  userName,
+  onToggle,
 }: ExerciseCardProps) {
   const [completed, setCompleted] = useState(initialCompleted)
   const [expanded, setExpanded] = useState(false)
@@ -52,6 +56,7 @@ export default function ExerciseCard({
     startTransition(async () => {
       const newState = await toggleExerciseAction(workshopId, exercise.id)
       setCompleted(newState)
+      onToggle?.(exercise.id, newState)
     })
   }
 
@@ -281,38 +286,47 @@ export default function ExerciseCard({
           )}
 
           {/* Suggestions per person */}
-          {content.suggestions && content.suggestions.length > 0 && (
-            <div className="space-y-3">
-              <h4 className="flex items-center gap-1.5 text-sm font-medium text-foreground">
-                <UserCircle className="size-4 text-primary" />
-                Suggesties per persoon
-              </h4>
-              <div className="grid gap-2
-                              sm:grid-cols-2">
-                {content.suggestions.map((suggestion, i) => (
-                  <div
-                    key={i}
-                    className="rounded-lg border bg-card p-3"
-                  >
-                    <p className="mb-1.5 text-sm font-medium text-foreground">
-                      {suggestion.name}
-                    </p>
-                    <ul className="space-y-1">
-                      {suggestion.ideas.map((idea, j) => (
-                        <li
-                          key={j}
-                          className="flex items-start gap-1.5 text-xs text-muted-foreground"
-                        >
-                          <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary/40" />
-                          {idea}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+          {content.suggestions && content.suggestions.length > 0 && (() => {
+            const firstName = userName?.split(' ')[0]
+            const mySuggestion = firstName
+              ? content.suggestions!.find((s) => s.name.toLowerCase() === firstName.toLowerCase())
+              : undefined
+            const displaySuggestions = mySuggestion ? [mySuggestion] : content.suggestions!
+
+            return (
+              <div className="space-y-3">
+                <h4 className="flex items-center gap-1.5 text-sm font-medium text-foreground">
+                  <UserCircle className="size-4 text-primary" />
+                  {mySuggestion ? 'Suggestie voor jou' : 'Suggesties per persoon'}
+                </h4>
+                <div className={`grid gap-2 ${!mySuggestion ? 'sm:grid-cols-2' : ''}`}>
+                  {displaySuggestions.map((suggestion, i) => (
+                    <div
+                      key={i}
+                      className="rounded-lg border bg-card p-3"
+                    >
+                      {!mySuggestion && (
+                        <p className="mb-1.5 text-sm font-medium text-foreground">
+                          {suggestion.name}
+                        </p>
+                      )}
+                      <ul className="space-y-1">
+                        {suggestion.ideas.map((idea, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-1.5 text-xs text-muted-foreground"
+                          >
+                            <span className="mt-1.5 size-1 shrink-0 rounded-full bg-primary/40" />
+                            {idea}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )
+          })()}
 
           <Separator />
 

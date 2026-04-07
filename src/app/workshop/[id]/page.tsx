@@ -10,7 +10,7 @@ import {
   Calendar,
   Clock,
 } from 'lucide-react'
-import ExerciseCard from './exercise-card'
+import ExerciseList from './exercise-list'
 
 interface WorkshopPageProps {
   params: Promise<{ id: string }>
@@ -92,16 +92,12 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
         </div>
 
         {/* Exercise cards */}
-        <div className="space-y-4">
-          {workshop.exercises.map((exercise) => (
-            <ExerciseCard
-              key={exercise.id}
-              exercise={exercise}
-              workshopId={workshop.id}
-              initialCompleted={completedSet.has(exercise.id)}
-            />
-          ))}
-        </div>
+        <ExerciseList
+          exercises={workshop.exercises}
+          workshopId={workshop.id}
+          initialCompletedIds={Array.from(completedSet)}
+          userName={user.role === 'trainer' ? undefined : user.name}
+        />
       </main>
     </div>
   )
