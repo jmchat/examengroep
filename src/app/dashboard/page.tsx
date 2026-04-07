@@ -73,6 +73,16 @@ export default async function DashboardPage() {
               ? 'Je beheert deze workshopserie als trainer.'
               : 'Hier vind je alle materialen en oefeningen voor de AI workshops.'}
           </p>
+          {user.role === 'trainer' && (
+            <Link
+              href="/trainer"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary
+                         hover:bg-primary/20"
+            >
+              Trainerspagina
+              <ChevronRight className="size-3.5" />
+            </Link>
+          )}
         </div>
 
         {/* Workshop cards */}

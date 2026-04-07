@@ -27,8 +27,7 @@ import {
 const schedule = [
   { time: '09:00 - 09:15', label: 'Opening & kennismaking', duration: '15 min', icon: Users },
   { time: '09:15 - 09:30', label: 'Wachtwoord challenge', duration: '15 min', icon: PenTool },
-  { time: '09:30 - 10:00', label: 'Wat is AI? + Demo Claude & Cowork', duration: '30 min', icon: Presentation },
-  { time: '10:00 - 10:15', label: 'Live demo: Claude op jullie werk', duration: '15 min', icon: Lightbulb },
+  { time: '09:30 - 10:15', label: 'Wat is AI? + Demo Claude & Cowork', duration: '45 min', icon: Presentation },
   { time: '10:15 - 10:30', label: 'Pauze', duration: '15 min', icon: Coffee },
   { time: '10:30 - 11:15', label: 'Oefening 1 + 2 + bespreking', duration: '45 min', icon: BookOpen },
   { time: '11:15 - 11:45', label: 'Oefening 3: eigen werkcase', duration: '30 min', icon: Briefcase },
