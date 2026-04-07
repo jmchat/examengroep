@@ -27,10 +27,12 @@ import {
 const schedule = [
   { time: '09:00 - 09:15', label: 'Opening & kennismaking', duration: '15 min', icon: Users },
   { time: '09:15 - 09:30', label: 'Wachtwoord challenge', duration: '15 min', icon: PenTool },
-  { time: '09:30 - 10:15', label: 'Wat is AI? + Demo Claude & Cowork', duration: '45 min', icon: Presentation },
-  { time: '10:15 - 10:30', label: 'Pauze', duration: '15 min', icon: Coffee },
-  { time: '10:30 - 11:15', label: 'Oefening 1 + 2 + bespreking', duration: '45 min', icon: BookOpen },
-  { time: '11:15 - 11:45', label: 'Oefening 3: eigen werkcase', duration: '30 min', icon: Briefcase },
+  { time: '09:30 - 09:45', label: 'Hoe werkt AI? (handout doorlopen)', duration: '15 min', icon: Presentation },
+  { time: '09:45 - 10:00', label: 'Rondleiding Claude & Cowork', duration: '15 min', icon: Lightbulb },
+  { time: '10:00 - 10:15', label: 'Pauze', duration: '15 min', icon: Coffee },
+  { time: '10:15 - 11:00', label: 'Oefening 1 + 2 + bespreking', duration: '45 min', icon: BookOpen },
+  { time: '11:00 - 11:30', label: 'Oefening 3: eigen werkcase', duration: '30 min', icon: Briefcase },
+  { time: '11:30 - 11:45', label: 'Terugkoppeling oefening 3', duration: '15 min', icon: MessageSquare },
   { time: '11:45 - 12:00', label: 'Wrap-up + huiswerk uitleggen', duration: '15 min', icon: MessageSquare },
 ]
 
