@@ -2,6 +2,7 @@ import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getSession } from '@/lib/auth'
 import { getProgress } from '@/lib/progress'
+import { getHomeworkEntries } from '@/lib/homework'
 import { getWorkshop } from '@/lib/workshops'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -11,6 +12,7 @@ import {
   Clock,
 } from 'lucide-react'
 import ExerciseList from './exercise-list'
+import HomeworkForm from './homework-form'
 
 interface WorkshopPageProps {
   params: Promise<{ id: string }>
@@ -31,7 +33,10 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
     redirect('/dashboard')
   }
 
-  const progress = await getProgress(user.id)
+  const [progress, homeworkEntries] = await Promise.all([
+    getProgress(user.id),
+    getHomeworkEntries(user.id, workshopId),
+  ])
 
   // Build a set of completed exercise IDs for this workshop
   const completedSet = new Set(
@@ -39,6 +44,10 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
       .filter((p) => p.workshopId === workshopId && p.completed)
       .map((p) => p.exerciseId)
   )
+
+  // Split exercises: homework gets its own form component
+  const regularExercises = workshop.exercises.filter((e) => e.type !== 'homework')
+  const hasHomework = workshop.exercises.some((e) => e.type === 'homework')
 
   return (
     <div className="min-h-screen bg-secondary/30">
@@ -86,18 +95,28 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
               {workshop.time}
             </span>
             <span className="text-xs">
-              {completedSet.size}/{workshop.exercises.length} afgerond
+              {Array.from(completedSet).filter((id) => regularExercises.some((e) => e.id === id)).length}/{regularExercises.length} afgerond
             </span>
           </div>
         </div>
 
         {/* Exercise cards */}
         <ExerciseList
-          exercises={workshop.exercises}
+          exercises={regularExercises}
           workshopId={workshop.id}
           initialCompletedIds={Array.from(completedSet)}
           userName={user.role === 'trainer' ? undefined : user.name}
         />
+
+        {/* Homework form */}
+        {hasHomework && (
+          <div className="mt-4">
+            <HomeworkForm
+              workshopId={workshop.id}
+              initialEntries={homeworkEntries}
+            />
+          </div>
+        )}
       </main>
     </div>
   )
