@@ -418,6 +418,31 @@ export const workshops: Workshop[] = [
   },
 ]
 
+// Unlock moment per workshop (ISO with explicit Amsterdam offset).
+// Session 1: always unlocked. Sessions 2/3: unlock at 09:00 Europe/Amsterdam
+// on their scheduled Wednesday. April and May 2026 are CEST (+02:00).
+const workshopUnlockAt: Record<number, string> = {
+  2: '2026-04-15T09:00:00+02:00',
+  3: '2026-05-06T09:00:00+02:00',
+}
+
+export function getWorkshopUnlockDate(workshopId: number): Date | null {
+  const iso = workshopUnlockAt[workshopId]
+  return iso ? new Date(iso) : null
+}
+
+export function isWorkshopUnlocked(
+  workshopId: number,
+  role: 'participant' | 'trainer',
+  now: Date = new Date()
+): boolean {
+  if (role === 'trainer') return true
+  if (workshopId <= 1) return true
+  const unlockAt = getWorkshopUnlockDate(workshopId)
+  if (!unlockAt) return false
+  return now.getTime() >= unlockAt.getTime()
+}
+
 export function getWorkshop(id: number): Workshop | undefined {
   return workshops.find((w) => w.id === id)
 }

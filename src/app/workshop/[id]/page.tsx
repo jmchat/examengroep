@@ -3,16 +3,43 @@ import Link from 'next/link'
 import { getSession } from '@/lib/auth'
 import { getProgress } from '@/lib/progress'
 import { getHomeworkEntries } from '@/lib/homework'
-import { getWorkshop } from '@/lib/workshops'
+import { getWorkshop, isWorkshopUnlocked } from '@/lib/workshops'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   ArrowLeft,
   Calendar,
   Clock,
+  Coffee,
+  Users,
+  Presentation,
+  MessageSquare,
+  Lightbulb,
+  Briefcase,
+  BookOpen,
 } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
 import ExerciseList from './exercise-list'
 import HomeworkForm from './homework-form'
+
+interface ScheduleItem {
+  time: string
+  label: string
+  duration: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+const workshopSchedules: Record<number, ScheduleItem[]> = {
+  2: [
+    { time: '09:00 - 09:15', label: 'Opening & terugblik sessie 1', duration: '15 min', icon: Users },
+    { time: '09:15 - 09:45', label: 'Huiswerk bespreken (ervaringen delen)', duration: '30 min', icon: MessageSquare },
+    { time: '09:45 - 10:30', label: 'Blok A: AI voor examencontent', duration: '45 min', icon: BookOpen },
+    { time: '10:30 - 10:45', label: 'Pauze', duration: '15 min', icon: Coffee },
+    { time: '10:45 - 11:30', label: 'Blok B: AI voor documenten & workflows', duration: '45 min', icon: Presentation },
+    { time: '11:30 - 11:45', label: 'Eigen werkcase toepassen', duration: '15 min', icon: Briefcase },
+    { time: '11:45 - 12:00', label: 'Wrap-up + vooruitblik sessie 3', duration: '15 min', icon: Lightbulb },
+  ],
+}
 
 interface WorkshopPageProps {
   params: Promise<{ id: string }>
@@ -28,8 +55,7 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
 
   if (!workshop) notFound()
 
-  // Only session 1 is accessible for participants; trainers can access all
-  if (user.role !== 'trainer' && workshopId > 1) {
+  if (!isWorkshopUnlocked(workshopId, user.role)) {
     redirect('/dashboard')
   }
 
@@ -99,6 +125,48 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
             </span>
           </div>
         </div>
+
+        {/* Programma */}
+        {workshopSchedules[workshop.id] && (
+          <section className="mb-8">
+            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              <Clock className="size-4 text-[#9e1357]" />
+              Programma
+            </h2>
+            <Card>
+              <CardContent className="pt-2">
+                <div className="divide-y divide-border">
+                  {workshopSchedules[workshop.id].map((item, index) => {
+                    const Icon = item.icon
+                    const isPause = item.label === 'Pauze'
+                    return (
+                      <div
+                        key={index}
+                        className={`flex items-center gap-4 py-3 ${isPause ? 'bg-muted/50 -mx-4 px-4 rounded-lg' : ''}`}
+                      >
+                        <div className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${isPause ? 'bg-muted' : 'bg-[#9e1357]/10'}`}>
+                          <Icon className={`size-4 ${isPause ? 'text-muted-foreground' : 'text-[#9e1357]'}`} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className={`text-sm font-medium ${isPause ? 'text-muted-foreground italic' : 'text-foreground'}`}>
+                            {item.label}
+                          </p>
+                        </div>
+                        <div className="flex shrink-0 items-center gap-3 text-sm text-muted-foreground">
+                          <span className="hidden font-mono text-xs
+                                           sm:inline">{item.time}</span>
+                          <Badge variant="secondary" className="font-mono text-xs">
+                            {item.duration}
+                          </Badge>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+        )}
 
         {/* Exercise cards */}
         <ExerciseList

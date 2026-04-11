@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { getSession } from '@/lib/auth'
+import { getAllHomeworkForWorkshop } from '@/lib/homework'
 import {
   Card,
   CardContent,
@@ -22,18 +23,22 @@ import {
   ExternalLink,
   User,
   AlertCircle,
+  Home,
+  ChevronRight,
+  CheckCircle2,
 } from 'lucide-react'
 
+const HOMEWORK_WORKSHOP_ID = 1
+const HOMEWORK_TARGET_ENTRIES = 3
+
 const schedule = [
-  { time: '09:00 - 09:15', label: 'Opening & kennismaking', duration: '15 min', icon: Users },
-  { time: '09:15 - 09:30', label: 'Wachtwoord challenge', duration: '15 min', icon: PenTool },
-  { time: '09:30 - 09:45', label: 'Hoe werkt AI? (handout doorlopen)', duration: '15 min', icon: Presentation },
-  { time: '09:45 - 10:00', label: 'Rondleiding Claude & Cowork', duration: '15 min', icon: Lightbulb },
-  { time: '10:00 - 10:15', label: 'Pauze', duration: '15 min', icon: Coffee },
-  { time: '10:15 - 11:00', label: 'Oefening 1 + 2 + bespreking', duration: '45 min', icon: BookOpen },
-  { time: '11:00 - 11:30', label: 'Oefening 3: eigen werkcase', duration: '30 min', icon: Briefcase },
-  { time: '11:30 - 11:45', label: 'Terugkoppeling oefening 3', duration: '15 min', icon: MessageSquare },
-  { time: '11:45 - 12:00', label: 'Wrap-up + huiswerk uitleggen', duration: '15 min', icon: MessageSquare },
+  { time: '09:00 - 09:15', label: 'Opening & terugblik sessie 1', duration: '15 min', icon: Users },
+  { time: '09:15 - 09:45', label: 'Huiswerk bespreken (ervaringen delen)', duration: '30 min', icon: MessageSquare },
+  { time: '09:45 - 10:30', label: 'Blok A: AI voor examencontent', duration: '45 min', icon: BookOpen },
+  { time: '10:30 - 10:45', label: 'Pauze', duration: '15 min', icon: Coffee },
+  { time: '10:45 - 11:30', label: 'Blok B: AI voor documenten & workflows', duration: '45 min', icon: Presentation },
+  { time: '11:30 - 11:45', label: 'Eigen werkcase toepassen', duration: '15 min', icon: Briefcase },
+  { time: '11:45 - 12:00', label: 'Wrap-up + vooruitblik sessie 3', duration: '15 min', icon: Lightbulb },
 ]
 
 const participants = [
@@ -103,10 +108,29 @@ function getLevelBadge(level: string) {
   }
 }
 
+function formatRelativeDate(date: Date): string {
+  const diffMs = Date.now() - date.getTime()
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+  if (diffHours < 1) return 'zojuist'
+  if (diffHours < 24) return `${diffHours} uur geleden`
+  const diffDays = Math.floor(diffHours / 24)
+  if (diffDays === 1) return 'gisteren'
+  if (diffDays < 7) return `${diffDays} dagen geleden`
+  return date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })
+}
+
 export default async function TrainerPage() {
   const user = await getSession()
   if (!user) redirect('/login')
   if (user.role !== 'trainer') redirect('/dashboard')
+
+  const homework = await getAllHomeworkForWorkshop(HOMEWORK_WORKSHOP_ID)
+  const sortedHomework = [...homework].sort((a, b) => {
+    const aFilled = a.entries.filter((e) => e.promptUsed).length
+    const bFilled = b.entries.filter((e) => e.promptUsed).length
+    if (aFilled !== bFilled) return bFilled - aFilled
+    return a.name.localeCompare(b.name)
+  })
 
   return (
     <div className="min-h-screen bg-secondary/30">
@@ -150,7 +174,7 @@ export default async function TrainerPage() {
         <section className="mb-10">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
             <Clock className="size-5 text-[#9e1357]" />
-            Programma Sessie 1
+            Programma Sessie 2
           </h2>
 
           <Card>
@@ -188,6 +212,73 @@ export default async function TrainerPage() {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        {/* Section: Huiswerk Sessie 1 */}
+        <section className="mb-10">
+          <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+            <Home className="size-5 text-[#9e1357]" />
+            Huiswerk Sessie 1
+            <Badge variant="secondary" className="ml-1">
+              {sortedHomework.filter((p) => p.entries.some((e) => e.promptUsed)).length}/{sortedHomework.length} bezig
+            </Badge>
+          </h2>
+
+          <div className="grid gap-3
+                          sm:grid-cols-2">
+            {sortedHomework.map((participant) => {
+              const filled = participant.entries.filter((e) => e.promptUsed).length
+              const isComplete = filled >= HOMEWORK_TARGET_ENTRIES
+              const hasAny = filled > 0
+
+              return (
+                <Link
+                  key={participant.userId}
+                  href={`/trainer/huiswerk/${participant.userId}`}
+                  className="group"
+                >
+                  <Card className={`h-full transition-shadow hover:shadow-md ${
+                    isComplete ? 'border-emerald-200 bg-emerald-50/40' :
+                    hasAny ? 'border-amber-200 bg-amber-50/30' :
+                    'border-dashed'
+                  }`}>
+                    <CardContent className="flex items-center gap-3">
+                      <div className={`flex size-10 shrink-0 items-center justify-center rounded-full ${
+                        isComplete ? 'bg-emerald-600 text-white' :
+                        hasAny ? 'bg-amber-500 text-white' :
+                        'bg-muted text-muted-foreground'
+                      }`}>
+                        {isComplete
+                          ? <CheckCircle2 className="size-5" />
+                          : <Home className="size-5" />}
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-medium text-foreground">
+                          {participant.name}
+                        </p>
+                        <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
+                          <span>
+                            {filled}/{HOMEWORK_TARGET_ENTRIES} ingevuld
+                          </span>
+                          {participant.lastUpdated && (
+                            <>
+                              <span>•</span>
+                              <span>{formatRelativeDate(participant.lastUpdated)}</span>
+                            </>
+                          )}
+                          {!hasAny && <span className="italic">nog leeg</span>}
+                        </div>
+                      </div>
+
+                      <ChevronRight className="size-4 shrink-0 text-muted-foreground transition-transform
+                                                group-hover:translate-x-0.5" />
+                    </CardContent>
+                  </Card>
+                </Link>
+              )
+            })}
+          </div>
         </section>
 
         {/* Section 2: Deelnemersprofielen */}
@@ -282,7 +373,7 @@ export default async function TrainerPage() {
               </Card>
             </Link>
 
-            <Link href="/workshop/1" className="group">
+            <Link href="/workshop/2" className="group">
               <Card className="transition-shadow
                                hover:shadow-md">
                 <CardContent className="flex items-center gap-3">
@@ -290,8 +381,8 @@ export default async function TrainerPage() {
                     <BookOpen className="size-5 text-[#9e1357]" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground">Workshop Sessie 1</p>
-                    <p className="text-xs text-muted-foreground">Bekijk de eerste workshop</p>
+                    <p className="text-sm font-medium text-foreground">Workshop Sessie 2</p>
+                    <p className="text-xs text-muted-foreground">Bekijk de tweede workshop</p>
                   </div>
                   <ExternalLink className="size-4 text-muted-foreground transition-colors
                                            group-hover:text-foreground" />

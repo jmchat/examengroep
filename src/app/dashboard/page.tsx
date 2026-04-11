@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { getSession } from '@/lib/auth'
 import { getProgress, getWorkshopProgress } from '@/lib/progress'
-import { workshops, getExerciseCount } from '@/lib/workshops'
+import { workshops, getExerciseCount, isWorkshopUnlocked, getWorkshopUnlockDate } from '@/lib/workshops'
 import {
   Card,
   CardContent,
@@ -96,8 +96,18 @@ export default async function DashboardPage() {
               totalExercises
             )
             const Icon = workshopIcons[index] || BookOpen
-            // Only session 1 is unlocked for participants; trainers see all
-            const isLocked = user.role !== 'trainer' && workshop.id > 1
+            const isLocked = !isWorkshopUnlocked(workshop.id, user.role)
+            const unlockAt = getWorkshopUnlockDate(workshop.id)
+            const unlockLabel = unlockAt
+              ? unlockAt.toLocaleString('nl-NL', {
+                  weekday: 'long',
+                  day: 'numeric',
+                  month: 'long',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  timeZone: 'Europe/Amsterdam',
+                })
+              : null
 
             const cardContent = (
               <Card className={`h-full transition-shadow ${isLocked ? 'opacity-50' : 'hover:shadow-md'}`}>
@@ -134,9 +144,13 @@ export default async function DashboardPage() {
                     </div>
 
                     {isLocked ? (
-                      <div className="flex items-center gap-1.5 pt-1 text-sm text-muted-foreground">
-                        <Lock className="size-3.5" />
-                        Beschikbaar na de vorige sessie
+                      <div className="flex items-start gap-1.5 pt-1 text-sm text-muted-foreground">
+                        <Lock className="mt-0.5 size-3.5 shrink-0" />
+                        <span>
+                          {unlockLabel
+                            ? `Beschikbaar vanaf ${unlockLabel}`
+                            : 'Beschikbaar na de vorige sessie'}
+                        </span>
                       </div>
                     ) : (
                       <>
