@@ -447,26 +447,24 @@ export const workshops: Workshop[] = [
         type: 'homework',
         content: {
           intro:
-            'Richt je eigen Claude-werkplek in en gebruik deze de komende weken voor je dagelijks werk. Neem je ervaringen mee naar sessie 3.',
+            'Maak een eigen skill (herbruikbare instructieset) in je Claude Project. Een skill is een set custom instructions die Claude precies vertelt hoe hij een terugkerende taak moet uitvoeren, zodat je niet elke keer dezelfde prompt hoeft te schrijven.',
           checklist: [
-            'Maak een Claude Project aan voor je werkgebied',
-            'Upload minimaal 3 relevante documenten (examenkaders, sjablonen, richtlijnen)',
-            'Schrijf custom instructions die passen bij jouw werk',
-            'Gebruik Claude minimaal 5 keer vanuit je project',
-            'Maak minimaal 1 herbruikbaar template (uit blok B)',
+            'Kies een terugkerende taak uit je werk (bijv. examenvragen reviewen, contracten checken, e-mails opstellen)',
+            'Schrijf custom instructions voor deze taak in je Claude Project: welke rol, welk format, welke beperkingen',
+            'Test je skill minimaal 3 keer met verschillende input',
+            'Verbeter de instructions op basis van wat er misgaat of beter kan',
+            'Deel je skill met een collega en vraag of het resultaat bruikbaar is',
             'Noteer wat wel en niet werkte, neem dit mee naar sessie 3',
           ],
           table: {
             headers: [
-              'Wat deed je?',
-              'Welk project/document?',
-              'Custom instructions gebruikt?',
-              'Resultaat bruikbaar?',
+              'Welke skill?',
+              'Welke taak automatiseert het?',
+              'Hoe vaak getest?',
+              'Resultaat consistent?',
               'Wat zou je verbeteren?',
             ],
             rows: [
-              ['', '', '', '', ''],
-              ['', '', '', '', ''],
               ['', '', '', '', ''],
               ['', '', '', '', ''],
               ['', '', '', '', ''],
