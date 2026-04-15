@@ -193,7 +193,7 @@ export default function HomeworkForm({
             </div>
             <div>
               <CardTitle className={`text-base ${hasEntries ? 'text-primary' : ''}`}>
-                Huiswerk voor sessie 2
+                Huiswerk voor sessie {workshopId + 1}
               </CardTitle>
               <div className="mt-1.5 flex items-center gap-2">
                 <Badge variant="outline">Huiswerk</Badge>
@@ -238,7 +238,7 @@ export default function HomeworkForm({
 
           <div className="rounded-lg border bg-muted/30 p-3">
             <p className="text-xs text-muted-foreground">
-              <strong>Neem naar sessie 2 mee:</strong> Eén concreet voorbeeld dat je wilt verbeteren
+              <strong>Neem naar sessie {workshopId + 1} mee:</strong> Eén concreet voorbeeld dat je wilt verbeteren
               of verder uitwerken. Optioneel: een document als werkmateriaal (examenverantwoording,
               contract, format-voorbeeld, etc.)
             </p>
