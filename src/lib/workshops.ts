@@ -316,33 +316,162 @@ export const workshops: Workshop[] = [
       'In deze sessie passen we AI toe op concrete werkprocessen van Examengroep. We werken met examencontent en documenten.',
     exercises: [
       {
-        id: 'blok-a',
-        title: 'Blok A: AI voor examencontent',
-        type: 'placeholder',
+        id: 'claude-als-werkplek',
+        title: 'Claude als werkplek: Projects, Connectors & Skills',
+        type: 'reference',
         content: {
           intro:
-            'In dit blok leer je hoe je AI kunt inzetten voor het genereren en verbeteren van examenvragen.',
-          checklist: [
-            'Examenvragen genereren met Claude',
-            'Iteratief verbeteren van vraagkwaliteit',
-            'Meertalige examenvragen (EN/ES/DE)',
-            'Kwaliteitscontrole met AI-ondersteuning',
+            'In sessie 1 werkten we met losse gesprekken. Maar Claude kan veel meer: je kunt het inrichten als een echte werkplek met geheugen, toegang tot bestanden en herbruikbare instructies. Dit zijn de drie bouwstenen.',
+          sections: [
+            {
+              heading: 'Projects: je AI-werkruimte',
+              text: 'Een Project is een vaste werkruimte in Claude waar je context verzamelt.\n\n• Upload bestanden die Claude altijd kan raadplegen (huisstijlgids, examenkaders, sjablonen)\n• Voeg instructies toe die voor elk gesprek binnen het project gelden\n• Alle gesprekken binnen een project delen dezelfde context\n• Ideaal voor: een project per examenopleiding, of een project voor contractwerk',
+            },
+            {
+              heading: 'Connectors: Claude koppelen aan je data',
+              text: 'Met connectors geef je Claude toegang tot externe bronnen, zonder bestanden handmatig te uploaden.\n\n• Google Drive: Claude doorzoekt en leest documenten uit je Drive\n• Web search: Claude zoekt actuele informatie op internet\n• Code repositories: voor technische teams (niet relevant voor jullie)\n\nBelangrijk: connectors zijn beschikbaar in Claude Pro/Team. Ze worden per project ingeschakeld.',
+            },
+            {
+              heading: 'Custom Instructions & Skills',
+              text: 'Custom instructions zijn vaste aanwijzingen die Claude altijd volgt binnen een project.\n\n• Schrijf op hoe Claude zich moet gedragen: "Schrijf altijd op MBO-niveau 3"\n• Definieer vaste formats: "Gebruik altijd het Examengroep-vraagformat"\n• Stel beperkingen in: "Gebruik alleen terminologie uit de goedgekeurde begrippenlijst"\n• Dit vervangt het steeds opnieuw typen van dezelfde instructies',
+            },
+          ],
+          table: {
+            headers: ['Functie', 'Wat doet het?', 'Wanneer gebruiken?'],
+            rows: [
+              ['Project', 'Vaste werkruimte met gedeelde context en bestanden', 'Je werkt regelmatig aan hetzelfde onderwerp'],
+              ['Bestanden uploaden', 'PDF, Word, Excel beschikbaar maken voor Claude', 'Je wilt dat Claude een specifiek document analyseert of gebruikt'],
+              ['Google Drive connector', 'Claude doorzoekt je Drive automatisch', 'Je hebt veel documenten en wilt niet steeds uploaden'],
+              ['Custom instructions', 'Vaste regels die Claude altijd volgt', 'Je wilt consistent output in een vast format of stijl'],
+            ],
+          },
+          bonusTip:
+            'Begin klein: maak een project aan voor je belangrijkste werkgebied, upload 2-3 kerndocumenten, en voeg 3 regels custom instructions toe. Bouw het daarna uit.',
+        },
+      },
+      {
+        id: 'blok-a',
+        title: 'Blok A: AI voor examencontent',
+        duration: '45 min',
+        type: 'exercise',
+        content: {
+          intro:
+            'In dit blok werk je met Claude aan echte examencontent. Je leert hoe je examenvragen genereert op basis van lesstof, ze iteratief verbetert, en vertaalt naar andere talen met behoud van vaktermen.',
+          steps: [
+            {
+              label: 'Stap 1: Examendocument uploaden en analyseren',
+              description:
+                'Upload een examendocument, lesstof of examenkader naar Claude. Laat Claude de inhoud samenvatten en de belangrijkste thema\'s identificeren.',
+              example:
+                'Ik upload hierbij het examenkader voor [opleidingsnaam]. Analyseer dit document en geef me:\n1. De belangrijkste thema\'s en eindtermen\n2. Welke onderwerpen zich het best lenen voor meerkeuzevragen\n3. Eventuele hiaten of onduidelijkheden die je opvallen',
+            },
+            {
+              label: 'Stap 2: Examenvragen genereren',
+              description:
+                'Laat Claude examenvragen genereren op basis van het geuploade document. Gebruik de 5 bouwstenen uit sessie 1.',
+              example:
+                'Genereer 3 meerkeuzevragen op MBO-niveau 3 over het thema [thema uit stap 1].\n\nGebruik dit format per vraag:\n- Situatieschets (2-3 zinnen)\n- Vraagstam\n- 4 antwoordopties (A t/m D)\n- Juiste antwoord + uitleg\n- Per afleider: waarom deze fout maar geloofwaardig is\n\nBaseer de vragen op de lesstof die ik heb geuploaded. Gebruik geen informatie die niet in het document staat.',
+            },
+            {
+              label: 'Stap 3: Meertalig vertalen',
+              description:
+                'Laat Claude een examenvraag vertalen naar Engels, Spaans of Duits. Let op behoud van vaktermen en niveau.',
+              example:
+                'Vertaal de volgende examenvraag naar het Engels.\n\nBelangrijk:\n- Behoud de vaktermen (geef de Engelse equivalent, niet een vrije vertaling)\n- Houd hetzelfde niveau en moeilijkheidsgraad aan\n- Zorg dat de afleiders ook in het Engels geloofwaardig zijn\n- Geef na de vertaling een lijst van de gebruikte vaktermen: Nederlands → Engels',
+            },
+            {
+              label: 'Stap 4: Kwaliteitscontrole door Claude',
+              description:
+                'Laat Claude zijn eigen werk reviewen. Dit is een krachtige techniek: vraag Claude om als criticus naar de vragen te kijken.',
+              example:
+                'Beoordeel de examenvragen die je zojuist hebt gemaakt op de volgende criteria:\n\n1. Zijn de afleiders geloofwaardig en niet te makkelijk te elimineren?\n2. Is het taalniveau passend voor MBO-3?\n3. Wordt er alleen getoetst wat in de lesstof staat?\n4. Zijn er meerdere interpretaties mogelijk van de vraagstam?\n5. Is het juiste antwoord ondubbelzinnig correct?\n\nGeef per vraag een score (1-5) en concrete verbeterpunten.',
+            },
+          ],
+          tips: [
+            { situation: 'Claude verzint feiten die niet in je document staan', response: '"Baseer je antwoord uitsluitend op het geuploade document. Als je iets niet kunt vinden, geef dat aan."' },
+            { situation: 'De vragen zijn te makkelijk', response: '"Maak de vragen complexer door een situatieschets toe te voegen waarin de leerling moet redeneren, niet alleen herinneren."' },
+            { situation: 'Vaktermen worden verkeerd vertaald', response: '"Gebruik voor [term] de vertaling [correcte vertaling]. Dit is de gangbare term in de internationale vakliteratuur."' },
+            { situation: 'Je wilt meerdere varianten', response: '"Maak 3 varianten van deze vraag: zelfde eindterm, maar andere situatieschets en andere afleiders."' },
           ],
         },
       },
       {
         id: 'blok-b',
         title: 'Blok B: AI voor documenten en workflows',
-        type: 'placeholder',
+        duration: '45 min',
+        type: 'exercise',
         content: {
           intro:
-            'In dit blok werk je met AI voor documentverwerking en het stroomlijnen van werkprocessen.',
-          checklist: [
-            'Contracten opstellen en controleren',
-            'Documenten checken op volledigheid en consistentie',
-            'Word-formatting en templates',
-            'Workflow-automatisering met AI',
+            'In dit blok gebruik je Claude voor documentverwerking: contracten controleren, documenten opstellen, en herbruikbare templates maken. Je werkt met je eigen materiaal of met de voorbeelddocumenten.',
+          steps: [
+            {
+              label: 'Stap 1: Document uploaden en laten analyseren',
+              description:
+                'Upload een contract, beleidsdocument of samenwerkingsovereenkomst. Laat Claude het analyseren op volledigheid, consistentie en mogelijke risico\'s.',
+              example:
+                'Ik upload hierbij een samenwerkingsovereenkomst. Analyseer dit document op:\n\n1. Volledigheid: ontbreken er standaardclausules?\n2. Consistentie: spreken bepalingen elkaar tegen?\n3. Risico\'s: welke bepalingen zijn ongunstig of onduidelijk?\n4. Taalgebruik: zijn er formuleringen die duidelijker kunnen?\n\nGeef je bevindingen in een tabel: bevinding | locatie in document | ernst (laag/midden/hoog) | suggestie',
+            },
+            {
+              label: 'Stap 2: Document opstellen of verbeteren',
+              description:
+                'Laat Claude een nieuw document opstellen op basis van je input, of een bestaand document herschrijven.',
+              example:
+                'Stel een e-mail op voor examencommissieleden over de nieuwe procedure voor examenaanvragen.\n\nContext:\n- De procedure verandert per 1 juni 2026\n- Belangrijkste wijziging: digitale indiening via het portaal i.p.v. e-mail\n- Deadline voor de eerste ronde is 15 juni\n- Toon: professioneel maar toegankelijk\n\nFormat: korte e-mail, maximaal 200 woorden, met een opsomming van de 3 belangrijkste veranderingen.',
+            },
+            {
+              label: 'Stap 3: Consistentie-check en vergelijking',
+              description:
+                'Upload twee versies van een document of twee gerelateerde documenten. Laat Claude de verschillen en inconsistenties vinden.',
+              example:
+                'Ik upload twee documenten: het examenreglement en de studiehandleiding.\n\nVergelijk deze documenten op:\n1. Tegenstrijdige informatie (bijv. verschillende deadlines of procedures)\n2. Informatie die in het ene document staat maar ontbreekt in het andere\n3. Verschillende terminologie voor hetzelfde begrip\n\nGeef de resultaten in een overzichtelijke tabel.',
+            },
+            {
+              label: 'Stap 4: Template maken voor hergebruik',
+              description:
+                'Maak van je beste prompt een herbruikbaar template. Dit is de stap van "eenmalig handig" naar "structureel efficient".',
+              example:
+                'Maak van de prompt die we zojuist gebruikten een herbruikbaar template.\n\nHet template moet:\n- Duidelijke [INVULVELDEN] bevatten voor de variabele delen\n- Een korte instructie per invulveld\n- Een voorbeeld van een ingevuld template\n- Geschikt zijn om te delen met collega\'s die minder ervaring hebben met AI',
+            },
           ],
+          tips: [
+            { situation: 'Claude mist context over jullie organisatie', response: '"Bij Examengroep werken we als volgt: [leg je werkwijze uit]. Houd hier rekening mee in je analyse."' },
+            { situation: 'Het document is te lang voor een keer', response: '"Analyseer eerst pagina 1-10. Ik geef je daarna het vervolg." Of upload het als bestand in een Project.' },
+            { situation: 'Je wilt een vast format aanhouden', response: 'Zet het format in de custom instructions van je project. Dan hoef je het niet elke keer te herhalen.' },
+            { situation: 'Resultaat is te formeel of te informeel', response: '"Herschrijf dit in de toon van onze bestaande communicatie. Zie het geuploade voorbeeld als referentie."' },
+          ],
+        },
+      },
+      {
+        id: 'huiswerk-2',
+        title: 'Huiswerk voor sessie 3',
+        type: 'homework',
+        content: {
+          intro:
+            'Richt je eigen Claude-werkplek in en gebruik deze de komende weken voor je dagelijks werk. Neem je ervaringen mee naar sessie 3.',
+          checklist: [
+            'Maak een Claude Project aan voor je werkgebied',
+            'Upload minimaal 3 relevante documenten (examenkaders, sjablonen, richtlijnen)',
+            'Schrijf custom instructions die passen bij jouw werk',
+            'Gebruik Claude minimaal 5 keer vanuit je project',
+            'Maak minimaal 1 herbruikbaar template (uit blok B)',
+            'Noteer wat wel en niet werkte, neem dit mee naar sessie 3',
+          ],
+          table: {
+            headers: [
+              'Wat deed je?',
+              'Welk project/document?',
+              'Custom instructions gebruikt?',
+              'Resultaat bruikbaar?',
+              'Wat zou je verbeteren?',
+            ],
+            rows: [
+              ['', '', '', '', ''],
+              ['', '', '', '', ''],
+              ['', '', '', '', ''],
+              ['', '', '', '', ''],
+              ['', '', '', '', ''],
+            ],
+          },
         },
       },
     ],
