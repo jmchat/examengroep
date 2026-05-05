@@ -480,7 +480,7 @@ export const workshops: Workshop[] = [
     date: 'Woensdag 6 mei 2026',
     time: '09:00 - 12:00',
     description:
-      'In de afsluitende sessie draaien we de prompting-mindset om: in plaats van vooraf alle context te bedenken, geef je Claude alleen een doel en laat je het jou interviewen tot alles op tafel ligt. We sluiten af met concrete borging-afspraken.',
+      'In de afsluitende sessie draaien we de prompting-mindset om: in plaats van vooraf alle context te bedenken, geef je Claude alleen een doel en laat je het jou interviewen, met keuze-opties bij elke vraag, tot alles op tafel ligt. We sluiten af met concrete borging-afspraken.',
     exercises: [
       {
         id: 'terugblik',
@@ -519,8 +519,12 @@ export const workshops: Workshop[] = [
               text: 'Claude weet welke informatie nuttig is voor een goede output. Door jou te laten interviewen, haalt Claude context boven die jij anders zou vergeten.\n\nVoordelen:\n• Je hoeft niet vooraf alles uit te denken\n• Je krijgt vragen waar je zelf niet aan dacht\n• De output is bijna altijd specifieker en bruikbaarder\n• Het werkt ook als jij het onderwerp zelf nog niet helemaal scherp hebt',
             },
             {
-              heading: 'Drie patronen die werken',
-              text: '1. Eén vraag per keer (krachtigst)\n"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Stel maximaal 1 vraag per keer en wacht op mijn antwoord voordat je doorgaat. Begin nu."\n\n2. Vaste set vragen\n"Voordat je deze taak uitvoert: stel me 5 vragen die je nodig hebt om dit goed te doen. Daarna voer je de taak uit."\n\n3. Iteratief met afsluitcheck\n"Interview me over deze taak tot je voldoende weet. Vraag aan het einde expliciet of je iets gemist hebt. Pas dan beginnen."',
+              heading: 'Vier patronen die werken',
+              text: '1. Eén vraag per keer\n"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Stel maximaal 1 vraag per keer en wacht op mijn antwoord voordat je doorgaat. Begin nu."\n\n2. Vaste set vragen\n"Voordat je deze taak uitvoert: stel me 5 vragen die je nodig hebt om dit goed te doen. Daarna voer je de taak uit."\n\n3. Iteratief met afsluitcheck\n"Interview me over deze taak tot je voldoende weet. Vraag aan het einde expliciet of je iets gemist hebt. Pas dan beginnen."\n\n4. Vragen met keuze-opties (krachtigst, aanrader)\n"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie \'Anders, namelijk:\' toe. Stel 1 vraag per keer en wacht op mijn antwoord."',
+            },
+            {
+              heading: 'Waarom is variant 4 zo sterk?',
+              text: 'Dit is het patroon dat Claude zelf gebruikt in agentic settings (de "AskUserQuestion" werkwijze). Voordelen boven een open vraag:\n\n• Je hoeft niet vanaf nul te bedenken wat een goed antwoord is\n• Claude toont opties waar jij zelf niet aan dacht (vaak de waardevolste!)\n• Sneller antwoorden (kort kiezen ipv typen)\n• "Anders, namelijk:" houdt de deur open voor jouw eigen variant\n• Je krijgt minder vage of half-passende antwoorden, dus betere output\n\nVoorbeeld: bij "voor welk niveau is deze examenvraag?" zet Claude bijvoorbeeld a) MBO-2 b) MBO-3 c) MBO-4 d) HBO-bachelor e) Anders. Sneller dan zelf intypen en je ziet meteen alle relevante opties.',
             },
             {
               heading: 'Wanneer wel, wanneer niet?',
@@ -552,9 +556,9 @@ export const workshops: Workshop[] = [
             {
               label: 'Stap 1: Klassikale demo (10 min)',
               description:
-                'We doen samen op het scherm:\n\nDoel: een examenverantwoording opstellen voor een nieuw examenonderdeel.\n\nLet op welke vragen Claude stelt en welke jij zelf nooit had bedacht.',
+                'We doen samen op het scherm:\n\nDoel: een examenverantwoording opstellen voor een nieuw examenonderdeel.\n\nWe gebruiken de variant met keuze-opties. Let op hoe Claude bij elke vraag 3-4 opties geeft, en hoe vaak je een optie kiest die je zelf nooit had bedacht.',
               example:
-                'Ik moet een examenverantwoording opstellen voor een nieuw examenonderdeel binnen een MBO-opleiding. Stel mij 1 vraag per keer tot je voldoende informatie hebt om de verantwoording op te stellen. Wacht steeds op mijn antwoord.',
+                'Ik moet een examenverantwoording opstellen voor een nieuw examenonderdeel binnen een MBO-opleiding. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie "Anders, namelijk:" toe. Stel 1 vraag per keer en wacht op mijn antwoord.',
             },
             {
               label: 'Stap 2: Zelf oefenen (15 min)',
@@ -635,9 +639,9 @@ export const workshops: Workshop[] = [
             {
               label: 'Stap 2: Schrijf alleen het doel (5 min)',
               description:
-                'Schrijf 2-3 zinnen waarin je het doel beschrijft. Geen format, geen rol, geen lange context. Sluit af met de interview-instructie.',
+                'Schrijf 2-3 zinnen waarin je het doel beschrijft. Geen format, geen rol, geen lange context. Sluit af met de interview-instructie (variant met opties is de aanrader).',
               example:
-                'Ik wil [doel]. [Eventueel 1-2 zinnen context]. Stel mij 1 vraag per keer tot je voldoende informatie hebt om dit goed uit te voeren. Wacht steeds op mijn antwoord.',
+                'Ik wil [doel]. [Eventueel 1-2 zinnen context]. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie "Anders, namelijk:" toe. Stel 1 vraag per keer en wacht op mijn antwoord.',
             },
             {
               label: 'Stap 3: Doorloop het interview (20 min)',
@@ -699,15 +703,16 @@ export const workshops: Workshop[] = [
         type: 'reference',
         content: {
           intro:
-            'Bewaar dit spiekbriefje. Vijf patronen die je vandaag direct kunt inzetten.',
+            'Bewaar dit spiekbriefje. Zes patronen die je vandaag direct kunt inzetten. Variant 1 (vragen met opties) is de aanrader voor de meeste situaties.',
           table: {
             headers: ['Situatie', 'Interview-prompt'],
             rows: [
-              ['Complexe taak, veel context', '"Ik wil [doel]. Stel mij 1 vraag per keer tot je voldoende info hebt. Wacht steeds op mijn antwoord."'],
+              ['Aanrader voor bijna alles (vragen met opties)', '"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie \'Anders, namelijk:\' toe. Stel 1 vraag per keer en wacht op mijn antwoord."'],
+              ['Complexe taak, open vragen', '"Ik wil [doel]. Stel mij 1 vraag per keer tot je voldoende info hebt. Wacht steeds op mijn antwoord."'],
               ['Korte taak, snel scherp krijgen', '"Voordat je begint: stel mij 5 vragen die je nodig hebt om dit goed te doen."'],
               ['Diepgaand, met afsluitcheck', '"Interview mij over deze taak. Vraag aan het einde of je iets gemist hebt voordat je begint."'],
-              ['Onderwerp nog niet helder', '"Ik weet niet precies wat ik wil. Help me door door te vragen tot het scherp is."'],
-              ['Combineren met bouwstenen', '"[Rol + algemeen doel]. Stel mij vragen om de specifieke context, doelgroep en format scherp te krijgen."'],
+              ['Onderwerp nog niet helder', '"Ik weet niet precies wat ik wil. Help me door door te vragen (met opties) tot het scherp is."'],
+              ['Combineren met bouwstenen', '"[Rol + algemeen doel]. Stel mij vragen met keuze-opties om de specifieke context, doelgroep en format scherp te krijgen."'],
             ],
           },
           tips: [
@@ -716,7 +721,7 @@ export const workshops: Workshop[] = [
             { situation: 'Wil tussendoor stoppen', response: '"Voldoende. Begin met een eerste versie. Daarna pas ik bij waar nodig."' },
           ],
           bonusTip:
-            'De gouden regel van sessie 3: bij twijfel, laat Claude vragen stellen. Het kost je 2 minuten extra en bespaart je een ronde van bijsturen achteraf.',
+            'De gouden regel van sessie 3: bij twijfel, laat Claude vragen stellen, en vraag om keuze-opties bij elke vraag. Het kost je 2 minuten extra en bespaart je een ronde van bijsturen achteraf.',
         },
       },
     ],
