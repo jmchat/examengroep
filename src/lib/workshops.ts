@@ -520,11 +520,11 @@ export const workshops: Workshop[] = [
             },
             {
               heading: 'Vier patronen die werken',
-              text: '1. Eén vraag per keer\n"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Stel maximaal 1 vraag per keer en wacht op mijn antwoord voordat je doorgaat. Begin nu."\n\n2. Vaste set vragen\n"Voordat je deze taak uitvoert: stel me 5 vragen die je nodig hebt om dit goed te doen. Daarna voer je de taak uit."\n\n3. Iteratief met afsluitcheck\n"Interview me over deze taak tot je voldoende weet. Vraag aan het einde expliciet of je iets gemist hebt. Pas dan beginnen."\n\n4. Vragen met keuze-opties (krachtigst, aanrader)\n"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie \'Anders, namelijk:\' toe. Stel 1 vraag per keer en wacht op mijn antwoord."',
+              text: '1. Eén vraag per keer\n"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Stel maximaal 1 vraag per keer en wacht op mijn antwoord voordat je doorgaat. Begin nu."\n\n2. Vaste set vragen\n"Voordat je deze taak uitvoert: stel me 5 vragen die je nodig hebt om dit goed te doen. Daarna voer je de taak uit."\n\n3. Iteratief met afsluitcheck\n"Interview me over deze taak tot je voldoende weet. Vraag aan het einde expliciet of je iets gemist hebt. Pas dan beginnen."\n\n4. Met de AskUserQuestion-functie (krachtigst, aanrader)\n"Ik wil [doel]. Gebruik de AskUserQuestion-functie om mij te interviewen tot je alle context hebt. Stel 1 vraag per keer met 3-4 meerkeuze-opties plus een \'Anders, namelijk:\'. Wacht op mijn antwoord voordat je doorgaat."',
             },
             {
               heading: 'Waarom is variant 4 zo sterk?',
-              text: 'Dit is het patroon dat Claude zelf gebruikt in agentic settings (de "AskUserQuestion" werkwijze). Voordelen boven een open vraag:\n\n• Je hoeft niet vanaf nul te bedenken wat een goed antwoord is\n• Claude toont opties waar jij zelf niet aan dacht (vaak de waardevolste!)\n• Sneller antwoorden (kort kiezen ipv typen)\n• "Anders, namelijk:" houdt de deur open voor jouw eigen variant\n• Je krijgt minder vage of half-passende antwoorden, dus betere output\n\nVoorbeeld: bij "voor welk niveau is deze examenvraag?" zet Claude bijvoorbeeld a) MBO-2 b) MBO-3 c) MBO-4 d) HBO-bachelor e) Anders. Sneller dan zelf intypen en je ziet meteen alle relevante opties.',
+              text: 'AskUserQuestion is de ingebouwde functie waarmee Claude jou een vraag stelt met meerkeuze-opties in plaats van een open antwoord-vraag. Door dit expliciet te activeren krijg je:\n\n• Per vraag 3-4 plausibele opties + een "Anders, namelijk:"\n• Opties waar jij zelf niet aan dacht (vaak de waardevolste)\n• Sneller antwoorden (kiezen ipv typen)\n• Minder vage antwoorden, dus betere output\n• Een gestructureerde dialoog die niet uit de bocht vliegt\n\nVoorbeeld: bij "voor welk niveau is deze examenvraag?" geeft Claude bijvoorbeeld a) MBO-2 b) MBO-3 c) MBO-4 d) HBO-bachelor e) Anders, namelijk:. Klik aan, klaar.',
             },
             {
               heading: 'Wanneer wel, wanneer niet?',
@@ -558,7 +558,7 @@ export const workshops: Workshop[] = [
               description:
                 'We doen samen op het scherm:\n\nDoel: een examenverantwoording opstellen voor een nieuw examenonderdeel.\n\nWe gebruiken de variant met keuze-opties. Let op hoe Claude bij elke vraag 3-4 opties geeft, en hoe vaak je een optie kiest die je zelf nooit had bedacht.',
               example:
-                'Ik moet een examenverantwoording opstellen voor een nieuw examenonderdeel binnen een MBO-opleiding. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie "Anders, namelijk:" toe. Stel 1 vraag per keer en wacht op mijn antwoord.',
+                'Ik moet een examenverantwoording opstellen voor een nieuw examenonderdeel binnen een MBO-opleiding. Gebruik de AskUserQuestion-functie om mij te interviewen tot je alle context hebt. Stel 1 vraag per keer met 3-4 meerkeuze-opties plus een "Anders, namelijk:". Wacht op mijn antwoord voordat je doorgaat.',
             },
             {
               label: 'Stap 2: Zelf oefenen (15 min)',
@@ -641,7 +641,7 @@ export const workshops: Workshop[] = [
               description:
                 'Schrijf 2-3 zinnen waarin je het doel beschrijft. Geen format, geen rol, geen lange context. Sluit af met de interview-instructie (variant met opties is de aanrader).',
               example:
-                'Ik wil [doel]. [Eventueel 1-2 zinnen context]. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie "Anders, namelijk:" toe. Stel 1 vraag per keer en wacht op mijn antwoord.',
+                'Ik wil [doel]. [Eventueel 1-2 zinnen context]. Gebruik de AskUserQuestion-functie om mij te interviewen tot je alle context hebt. Stel 1 vraag per keer met 3-4 meerkeuze-opties plus een "Anders, namelijk:". Wacht op mijn antwoord voordat je doorgaat.',
             },
             {
               label: 'Stap 3: Doorloop het interview (20 min)',
@@ -703,16 +703,16 @@ export const workshops: Workshop[] = [
         type: 'reference',
         content: {
           intro:
-            'Bewaar dit spiekbriefje. Zes patronen die je vandaag direct kunt inzetten. Variant 1 (vragen met opties) is de aanrader voor de meeste situaties.',
+            'Bewaar dit spiekbriefje. Zes patronen die je vandaag direct kunt inzetten. Variant 1 (AskUserQuestion-functie) is de aanrader voor de meeste situaties.',
           table: {
             headers: ['Situatie', 'Interview-prompt'],
             rows: [
-              ['Aanrader voor bijna alles (vragen met opties)', '"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Voor elke vraag: geef de vraag plus 3-4 mogelijke antwoorden als opties (a, b, c, d). Voeg altijd een laatste optie \'Anders, namelijk:\' toe. Stel 1 vraag per keer en wacht op mijn antwoord."'],
+              ['Aanrader voor bijna alles (AskUserQuestion)', '"Ik wil [doel]. Gebruik de AskUserQuestion-functie om mij te interviewen tot je alle context hebt. Stel 1 vraag per keer met 3-4 meerkeuze-opties plus een \'Anders, namelijk:\'. Wacht op mijn antwoord voordat je doorgaat."'],
               ['Complexe taak, open vragen', '"Ik wil [doel]. Stel mij 1 vraag per keer tot je voldoende info hebt. Wacht steeds op mijn antwoord."'],
               ['Korte taak, snel scherp krijgen', '"Voordat je begint: stel mij 5 vragen die je nodig hebt om dit goed te doen."'],
               ['Diepgaand, met afsluitcheck', '"Interview mij over deze taak. Vraag aan het einde of je iets gemist hebt voordat je begint."'],
-              ['Onderwerp nog niet helder', '"Ik weet niet precies wat ik wil. Help me door door te vragen (met opties) tot het scherp is."'],
-              ['Combineren met bouwstenen', '"[Rol + algemeen doel]. Stel mij vragen met keuze-opties om de specifieke context, doelgroep en format scherp te krijgen."'],
+              ['Onderwerp nog niet helder', '"Ik weet niet precies wat ik wil. Gebruik de AskUserQuestion-functie om me door te vragen tot het scherp is."'],
+              ['Combineren met bouwstenen', '"[Rol + algemeen doel]. Gebruik de AskUserQuestion-functie om de specifieke context, doelgroep en format scherp te krijgen."'],
             ],
           },
           tips: [
@@ -721,7 +721,7 @@ export const workshops: Workshop[] = [
             { situation: 'Wil tussendoor stoppen', response: '"Voldoende. Begin met een eerste versie. Daarna pas ik bij waar nodig."' },
           ],
           bonusTip:
-            'De gouden regel van sessie 3: bij twijfel, laat Claude vragen stellen, en vraag om keuze-opties bij elke vraag. Het kost je 2 minuten extra en bespaart je een ronde van bijsturen achteraf.',
+            'De gouden regel van sessie 3: bij twijfel, laat Claude jou interviewen via de AskUserQuestion-functie. Het kost je 2 minuten extra en bespaart je een ronde van bijsturen achteraf.',
         },
       },
     ],
