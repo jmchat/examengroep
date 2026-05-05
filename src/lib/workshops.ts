@@ -476,69 +476,247 @@ export const workshops: Workshop[] = [
   },
   {
     id: 3,
-    title: 'Verdieping en borging',
+    title: 'Laat Claude jou interviewen',
     date: 'Woensdag 6 mei 2026',
     time: '09:00 - 12:00',
     description:
-      'In de laatste sessie verdiepen we onze kennis en maken we een plan voor structureel AI-gebruik binnen Examengroep.',
+      'In de afsluitende sessie draaien we de prompting-mindset om: in plaats van vooraf alle context te bedenken, geef je Claude alleen een doel en laat je het jou interviewen tot alles op tafel ligt. We sluiten af met concrete borging-afspraken.',
     exercises: [
       {
         id: 'terugblik',
-        title: 'Terugblik ervaringen',
-        type: 'placeholder',
+        title: 'Terugblik: wat werkte, wat niet?',
+        duration: '20 min',
+        type: 'exercise',
         content: {
           intro:
-            'We bespreken de ervaringen van de afgelopen weken en delen wat wel en niet werkte.',
-          checklist: [
-            'Delen van successen en uitdagingen',
-            'Bespreken van huiswerk en experimenten',
-            'Patronen herkennen in effectief AI-gebruik',
+            'Korte ronde langs de groep. Iedereen deelt 1 succes en 1 obstakel uit de afgelopen weken. Daarna zoeken we patronen.',
+          steps: [
+            {
+              label: 'Stap 1: Korte ronde (10 min)',
+              description:
+                'Ieder noemt:\n- Een taak waarvoor Claude goed werkte (en waarom)\n- Een taak waarbij het tegenviel (en wat er fout ging)',
+            },
+            {
+              label: 'Stap 2: Patronen herkennen (10 min)',
+              description:
+                'We zoeken samen naar patronen:\n- Welk type taken leent zich goed voor AI?\n- Waar zit consistent ruis?\n- Welke prompt-bouwstenen kwamen het vaakst terug?',
+            },
+          ],
+          bonusTip:
+            'Schrijf je eigen learning op in 1 zin. Die zin pakken we straks terug bij het persoonlijke commitment.',
+        },
+      },
+      {
+        id: 'interview-techniek',
+        title: 'De interview-techniek',
+        type: 'reference',
+        content: {
+          intro:
+            'In sessie 1 en 2 leerde je hoe je Claude een goede prompt geeft via de 5 bouwstenen. Probleem: je moet vooraf alles bedenken (rol, taak, context, format, beperkingen). Bij complexe taken weet je dat zelf niet altijd. De oplossing: draai het om. Geef Claude alleen een algemeen doel en laat Claude jou interviewen tot alle context op tafel ligt.',
+          sections: [
+            {
+              heading: 'Waarom werkt dit zo goed?',
+              text: 'Claude weet welke informatie nuttig is voor een goede output. Door jou te laten interviewen, haalt Claude context boven die jij anders zou vergeten.\n\nVoordelen:\n• Je hoeft niet vooraf alles uit te denken\n• Je krijgt vragen waar je zelf niet aan dacht\n• De output is bijna altijd specifieker en bruikbaarder\n• Het werkt ook als jij het onderwerp zelf nog niet helemaal scherp hebt',
+            },
+            {
+              heading: 'Drie patronen die werken',
+              text: '1. Eén vraag per keer (krachtigst)\n"Ik wil [doel]. Stel mij vragen om alle context te krijgen. Stel maximaal 1 vraag per keer en wacht op mijn antwoord voordat je doorgaat. Begin nu."\n\n2. Vaste set vragen\n"Voordat je deze taak uitvoert: stel me 5 vragen die je nodig hebt om dit goed te doen. Daarna voer je de taak uit."\n\n3. Iteratief met afsluitcheck\n"Interview me over deze taak tot je voldoende weet. Vraag aan het einde expliciet of je iets gemist hebt. Pas dan beginnen."',
+            },
+            {
+              heading: 'Wanneer wel, wanneer niet?',
+              text: 'Niet voor alles. Voor simpele taken (vertaal deze zin, vat dit samen) is een directe prompt sneller. Het loont vooral bij:\n\n• Complexe taken met veel context (examenverantwoording, beleidsstuk)\n• Taken waarbij jij nog zoekt wat je precies wilt\n• Output die sterk afhangt van doelgroep, niveau of format\n• Documenten waar veel verborgen aannames in zitten',
+            },
+          ],
+          table: {
+            headers: ['Klassieke prompt', 'Interview-prompt'],
+            rows: [
+              ['Jij denkt vooraf alles uit', 'Claude vraagt door tot het compleet is'],
+              ['Risico: je vergeet iets cruciaals', 'Risico: het duurt iets langer'],
+              ['Werkt voor heldere taken', 'Werkt voor diepe of complexe taken'],
+              ['Een shot, dan corrigeren', 'Iteratief van begin af aan scherp'],
+            ],
+          },
+          bonusTip:
+            'Combineer beide werelden: gebruik de 5 bouwstenen om het algemene doel scherp te krijgen, en sluit af met "Stel mij vragen tot je genoeg context hebt om dit goed uit te voeren." Best of both.',
+        },
+      },
+      {
+        id: 'oefening-interview',
+        title: 'Oefening: laat Claude jou interviewen',
+        duration: '30 min',
+        type: 'exercise',
+        content: {
+          intro:
+            'We doen eerst klassikaal een demo, daarna oefen je zelf. Doel: voelen wat het verschil maakt als Claude doorvraagt.',
+          steps: [
+            {
+              label: 'Stap 1: Klassikale demo (10 min)',
+              description:
+                'We doen samen op het scherm:\n\nDoel: een examenverantwoording opstellen voor een nieuw examenonderdeel.\n\nLet op welke vragen Claude stelt en welke jij zelf nooit had bedacht.',
+              example:
+                'Ik moet een examenverantwoording opstellen voor een nieuw examenonderdeel binnen een MBO-opleiding. Stel mij 1 vraag per keer tot je voldoende informatie hebt om de verantwoording op te stellen. Wacht steeds op mijn antwoord.',
+            },
+            {
+              label: 'Stap 2: Zelf oefenen (15 min)',
+              description:
+                'Kies een eenvoudige eigen taak en laat Claude jou interviewen. Houd bij:\n- Welke vraag verraste je?\n- Welke vraag had jij zelf nooit bedacht?\n- Hoe was de eindoutput vergeleken met een directe prompt?',
+            },
+            {
+              label: 'Stap 3: Korte uitwisseling (5 min)',
+              description:
+                'Een iemand deelt een goede ervaring, een iemand deelt waar het stroef ging. Wat leren we daaruit?',
+            },
+          ],
+          tips: [
+            { situation: 'Claude stelt te brede vragen', response: '"Stel concretere vragen die direct invloed hebben op het resultaat."' },
+            { situation: 'Claude vraagt te veel achter elkaar', response: '"Stel maximaal 1 vraag per beurt en wacht op mijn antwoord."' },
+            { situation: 'Claude wil te snel beginnen', response: '"Niet beginnen tot je zeker weet dat je geen cruciale info mist. Vraag of er nog iets ontbreekt."' },
+            { situation: 'Vragen voelen oppervlakkig', response: '"Stel scherpere vragen, zoals een ervaren collega zou doen die kritisch meedenkt."' },
           ],
         },
       },
       {
-        id: 'geavanceerd',
-        title: 'Geavanceerde prompt-technieken',
-        type: 'placeholder',
+        id: 'eigen-werkcase',
+        title: 'Eigen werkcase via interview-techniek',
+        duration: '45 min',
+        type: 'exercise',
         content: {
           intro:
-            'We leren gevorderde technieken om nog meer uit AI te halen.',
+            'Pak een echte taak van je werkstapel. Geef Claude alleen een doel, en laat het interview je naar de output leiden.',
+          suggestions: [
+            {
+              name: 'Esther',
+              ideas: [
+                'Examenverantwoording opstellen voor een nieuw onderdeel',
+                'Samenwerkingsovereenkomst met externe partij doorlichten',
+              ],
+            },
+            {
+              name: 'Lisa',
+              ideas: [
+                'Examenstuk herschrijven naar andere doelgroep of taal',
+                'Vertaling laten produceren met behoud van vaktermen',
+              ],
+            },
+            {
+              name: 'Debbie',
+              ideas: [
+                'Set meerkeuzevragen genereren bij een examenstuk',
+                'Toetsmatrijs opstellen voor een nieuw examen',
+              ],
+            },
+            {
+              name: 'Jeroen',
+              ideas: [
+                'Strategiestuk uitwerken (positionering, jaarplan)',
+                'Communicatie naar klanten herschrijven',
+              ],
+            },
+            {
+              name: 'Suzet',
+              ideas: [
+                'Validatiechecklist opstellen voor een examendossier',
+                'Examenvraag-review doen via interview',
+              ],
+            },
+            {
+              name: 'Angela',
+              ideas: [
+                'Vrije keuze: pak iets uit je werk waar je vaak op vastloopt',
+              ],
+            },
+          ],
+          steps: [
+            {
+              label: 'Stap 1: Kies een taak (5 min)',
+              description:
+                'Iets waar je niet direct alle context paraat hebt. Hoe complexer, hoe sterker de techniek werkt.',
+            },
+            {
+              label: 'Stap 2: Schrijf alleen het doel (5 min)',
+              description:
+                'Schrijf 2-3 zinnen waarin je het doel beschrijft. Geen format, geen rol, geen lange context. Sluit af met de interview-instructie.',
+              example:
+                'Ik wil [doel]. [Eventueel 1-2 zinnen context]. Stel mij 1 vraag per keer tot je voldoende informatie hebt om dit goed uit te voeren. Wacht steeds op mijn antwoord.',
+            },
+            {
+              label: 'Stap 3: Doorloop het interview (20 min)',
+              description:
+                'Beantwoord de vragen rustig. Voeg gerust details toe die Claude niet vroeg maar wel relevant zijn. Eindig met: "Heb je nu voldoende context, of mis je nog iets?"',
+            },
+            {
+              label: 'Stap 4: Laat Claude leveren en beoordeel (10 min)',
+              description:
+                'Vergelijk de output met wat je zonder interview zou hebben gekregen. Wat is beter? Wat zou je nog willen?',
+            },
+            {
+              label: 'Stap 5: Bewaar de prompt (5 min)',
+              description:
+                'Werkte het goed? Sla de prompt op in onze gedeelde prompt-bibliotheek (zie volgend onderdeel) als template voor de volgende keer.',
+            },
+          ],
+          bonusTip:
+            'Voor terugkerende taken: gebruik de interview-techniek de eerste keer en sla de uiteindelijke "klassieke" prompt op die eruit kwam. De volgende keer hoef je niet meer geinterviewd te worden.',
+        },
+      },
+      {
+        id: 'borging',
+        title: 'Borging: hoe houden we dit vol?',
+        duration: '30 min',
+        type: 'exercise',
+        content: {
+          intro:
+            'Een training landt alleen als er afspraken zijn die het levend houden. Vier simpele rituelen die geen extra werk zijn maar wel het verschil maken.',
+          sections: [
+            {
+              heading: '1. Gedeelde prompt-bibliotheek',
+              text: 'We starten een gezamenlijk Word- of Notion-document waarin we werkende prompts verzamelen. Elke goede prompt die je tegenkomt gaat erin, met:\n- Doel\n- De prompt zelf\n- Voor wie of welk type taak\n- Wel of niet via interview tot stand gekomen',
+            },
+            {
+              heading: '2. AI-buddy systeem',
+              text: 'Iedereen krijgt een buddy. Loop je vast met een prompt? Stuur je buddy de eerste poging en het resultaat. Een tweede paar ogen voorkomt vastlopen.\n\nKoppels (in te vullen tijdens de sessie):\n- Esther / Suzet\n- Lisa / Debbie\n- Jeroen / Angela',
+            },
+            {
+              heading: '3. Maandelijkse check-in (15 min)',
+              text: 'Elke eerste woensdag van de maand, 15 minuten:\n- Wat werkte deze maand goed?\n- Waar liepen we vast?\n- 1 prompt om toe te voegen aan de bibliotheek\n\nGeen agenda, geen notulen, gewoon delen.',
+            },
+            {
+              heading: '4. Persoonlijke commitment',
+              text: 'Iedereen kiest 1 concrete commitment voor de komende maand:\n- Ik gebruik Claude minimaal X keer per week voor [taak]\n- Ik probeer de interview-techniek minstens 3 keer\n- Ik voeg 2 prompts toe aan onze bibliotheek',
+            },
+          ],
           checklist: [
-            'Chain-of-thought prompting',
-            'Few-shot examples gebruiken',
-            'Complexe taken opdelen',
-            'Kwaliteitscontrole inbouwen in prompts',
+            'Prompt-bibliotheek aangemaakt en eigenaar bepaald',
+            'Buddy-koppels vastgelegd',
+            'Datum eerste maandelijkse check-in geprikt',
+            'Iedereen heeft 1 persoonlijke commitment opgeschreven',
           ],
         },
       },
       {
-        id: 'automatisering',
-        title: 'Automatiseringsmogelijkheden',
-        type: 'placeholder',
+        id: 'spiekbriefje-interview',
+        title: 'Spiekbriefje: interview-prompts',
+        type: 'reference',
         content: {
           intro:
-            'Ontdek welke taken je (deels) kunt automatiseren met AI-tools.',
-          checklist: [
-            'Terugkerende taken identificeren',
-            'Templates en herbruikbare prompts maken',
-            'Integratie met bestaande tools',
-            'Kosten-batenanalyse van AI-inzet',
+            'Bewaar dit spiekbriefje. Vijf patronen die je vandaag direct kunt inzetten.',
+          table: {
+            headers: ['Situatie', 'Interview-prompt'],
+            rows: [
+              ['Complexe taak, veel context', '"Ik wil [doel]. Stel mij 1 vraag per keer tot je voldoende info hebt. Wacht steeds op mijn antwoord."'],
+              ['Korte taak, snel scherp krijgen', '"Voordat je begint: stel mij 5 vragen die je nodig hebt om dit goed te doen."'],
+              ['Diepgaand, met afsluitcheck', '"Interview mij over deze taak. Vraag aan het einde of je iets gemist hebt voordat je begint."'],
+              ['Onderwerp nog niet helder', '"Ik weet niet precies wat ik wil. Help me door door te vragen tot het scherp is."'],
+              ['Combineren met bouwstenen', '"[Rol + algemeen doel]. Stel mij vragen om de specifieke context, doelgroep en format scherp te krijgen."'],
+            ],
+          },
+          tips: [
+            { situation: 'Geen interview nodig', response: 'Voor heldere, korte taken werkt een klassieke prompt sneller.' },
+            { situation: 'Te lang interview', response: '"Stel alleen vragen die echt invloed hebben op het resultaat. Sla details over die je later kan invullen."' },
+            { situation: 'Wil tussendoor stoppen', response: '"Voldoende. Begin met een eerste versie. Daarna pas ik bij waar nodig."' },
           ],
-        },
-      },
-      {
-        id: 'actieplan',
-        title: 'Actieplan opstellen',
-        type: 'placeholder',
-        content: {
-          intro:
-            'Samen stellen we een concreet actieplan op voor AI-gebruik binnen Examengroep.',
-          checklist: [
-            'Persoonlijke AI-doelen formuleren',
-            'Team-afspraken over AI-gebruik',
-            'Kennisdeling en ondersteuning organiseren',
-            'Evaluatiemoment plannen',
-          ],
+          bonusTip:
+            'De gouden regel van sessie 3: bij twijfel, laat Claude vragen stellen. Het kost je 2 minuten extra en bespaart je een ronde van bijsturen achteraf.',
         },
       },
     ],
