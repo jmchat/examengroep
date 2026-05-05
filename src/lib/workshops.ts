@@ -698,6 +698,47 @@ export const workshops: Workshop[] = [
         },
       },
       {
+        id: 'verder-groeien',
+        title: 'Verder groeien: 7 tips voor de toekomst',
+        type: 'reference',
+        content: {
+          intro:
+            'De interview-techniek brengt je ver. Maar er zijn nog 7 patronen die je werk met Claude een trap omhoog kunnen brengen. Niet alles tegelijk, pak er eentje per maand op.',
+          sections: [
+            {
+              heading: '1. Maak een Project per terugkerend type werk',
+              text: 'In Claude (web/Cowork) kun je een Project aanmaken: een werkomgeving met vaste instructies en bestanden die altijd meegaan. Ideaal voor terugkerend werk:\n\n• Project "MBO-3 Kok examenvragen" met de stijlgids, niveau-eisen en 3 voorbeeldvragen erin\n• Project "Validatie examendossiers" met de checklist en eerdere reviews\n• Project "Klantcommunicatie" met tone-of-voice en afgekeurde voorbeelden\n\nVoordeel: je hoeft de context niet elk gesprek opnieuw te geven.',
+            },
+            {
+              heading: '2. Voeg 1 goed voorbeeld toe (few-shot)',
+              text: 'Een goed voorbeeld zegt meer dan 200 woorden uitleg. In plaats van het format te beschrijven, plak je een eerder goedgekeurde uitwerking erin:\n\n"Hieronder een voorbeeld van een examenvraag die we goedkeurden. Schrijf een nieuwe vraag in dezelfde stijl, maar over [ander onderwerp]."\n\nHoe meer voorbeelden (3-5 is ideaal), hoe consistenter de output. Ze hoeven niet perfect te zijn, ze geven richting.',
+            },
+            {
+              heading: '3. Laat Claude zijn eigen werk reviewen',
+              text: 'Voeg aan het einde van je prompt een zelf-check toe. Claude is verrassend goed in het vinden van fouten in eigen output:\n\n"Voor je klaar bent: controleer of de afleiders elk een unieke misvatting representeren, of de vraagstam niet stuurt naar het juiste antwoord, en of het taalniveau MBO-3 is."\n\nDit vangt ongeveer 80% van de fouten die jij anders zelf had moeten vinden.',
+            },
+            {
+              heading: '4. Geef Claude toestemming om "ik weet het niet" te zeggen',
+              text: 'AI hallucineert vooral wanneer het onder druk staat om altijd een antwoord te geven. Voeg dit als standaard toe aan complexe vragen:\n\n"Geef expliciet aan als je twijfelt of als je iets niet zeker weet. Liever \'dat weet ik niet zeker\' dan een gok."\n\nVooral cruciaal bij feitelijke vragen, regelgeving, normeringen.',
+            },
+            {
+              heading: '5. Gebruik XML-tags voor lange prompts',
+              text: 'Bij prompts met veel context wordt het rommelig. Claude werkt extra goed met XML-tags die de delen scheiden:\n\n<context>De examenkandidaat is een tweedejaars MBO-3 leerling Kok...</context>\n<voorbeeld>Hier een goedgekeurde vraag: ...</voorbeeld>\n<opdracht>Schrijf een nieuwe vraag in dezelfde stijl...</opdracht>\n<format>4 antwoordopties, A-D, met onderbouwing afleiders</format>\n\nClaude pakt elk blok herkenbaar op en houdt ze gescheiden.',
+            },
+            {
+              heading: '6. Houd het kort: 150-300 woorden is meestal genoeg',
+              text: 'Een goede prompt is geen lange brief. Onderzoek (en de praktijk) wijst uit: prompts onder 300 woorden presteren vaak beter dan langere. Schrappen wat:\n\n• Beleefdheidsformules ("ik zou graag willen", "kun je alsjeblieft")\n• Herhaalde instructies ("zoals ik al zei...")\n• Disclaimers en aannames over wat Claude wel/niet kan\n\nElk woord moet bijdragen aan het resultaat. Twijfel je? Schrap het.',
+            },
+            {
+              heading: '7. Vraag om uitleg, niet alleen output',
+              text: 'Voeg aan complexe taken toe: "Leg ook kort uit waarom je deze keuzes hebt gemaakt." Dit doet drie dingen:\n\n• Je leert wat Claude meeweegt en kunt het bijsturen\n• Je vangt foute aannames vroeg\n• Je krijgt argumenten klaar voor je eigen review-gesprek\n\nVooral handig bij examenvragen, beleidsteksten en alles waar verantwoording bij hoort.',
+            },
+          ],
+          bonusTip:
+            'Plan: kies 1 tip per maand. Combineer met de maandelijkse check-in. Na 7 maanden heb je ze allemaal eigen gemaakt zonder ooit overweldigd te zijn.',
+        },
+      },
+      {
         id: 'spiekbriefje-interview',
         title: 'Spiekbriefje: interview-prompts',
         type: 'reference',
