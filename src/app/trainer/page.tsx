@@ -14,12 +14,12 @@ import {
   Clock,
   Coffee,
   Users,
-  Presentation,
   PenTool,
   MessageSquare,
   Lightbulb,
   Briefcase,
   BookOpen,
+  Sparkles,
   ExternalLink,
   User,
   AlertCircle,
@@ -28,17 +28,17 @@ import {
   CheckCircle2,
 } from 'lucide-react'
 
-const HOMEWORK_WORKSHOP_ID = 1
+const HOMEWORK_WORKSHOP_ID = 2
 const HOMEWORK_TARGET_ENTRIES = 3
 
 const schedule = [
-  { time: '09:00 - 09:15', label: 'Opening & terugblik sessie 1', duration: '15 min', icon: Users },
-  { time: '09:15 - 09:45', label: 'Huiswerk bespreken (ervaringen delen)', duration: '30 min', icon: MessageSquare },
-  { time: '09:45 - 10:30', label: 'Blok A: AI voor examencontent', duration: '45 min', icon: BookOpen },
-  { time: '10:30 - 10:45', label: 'Pauze', duration: '15 min', icon: Coffee },
-  { time: '10:45 - 11:30', label: 'Blok B: AI voor documenten & workflows', duration: '45 min', icon: Presentation },
-  { time: '11:30 - 11:45', label: 'Eigen werkcase toepassen', duration: '15 min', icon: Briefcase },
-  { time: '11:45 - 12:00', label: 'Wrap-up + vooruitblik sessie 3', duration: '15 min', icon: Lightbulb },
+  { time: '09:00 - 09:20', label: 'Opening + terugblik: wat werkte, wat niet?', duration: '20 min', icon: Users },
+  { time: '09:20 - 09:40', label: 'Theorie: de interview-techniek', duration: '20 min', icon: BookOpen },
+  { time: '09:40 - 10:10', label: 'Oefening: laat Claude jou interviewen', duration: '30 min', icon: MessageSquare },
+  { time: '10:10 - 10:25', label: 'Pauze', duration: '15 min', icon: Coffee },
+  { time: '10:25 - 11:10', label: 'Eigen werkcase via interview-techniek', duration: '45 min', icon: Briefcase },
+  { time: '11:10 - 11:30', label: 'Bonus: Claude bouwt iets voor je (artifacts en visuals)', duration: '20 min', icon: Sparkles },
+  { time: '11:30 - 12:00', label: 'Borging + persoonlijke commitment', duration: '30 min', icon: Lightbulb },
 ]
 
 const participants = [
@@ -174,7 +174,7 @@ export default async function TrainerPage() {
         <section className="mb-10">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
             <Clock className="size-5 text-[#9e1357]" />
-            Programma Sessie 2
+            Programma Sessie 3
           </h2>
 
           <Card>
@@ -218,7 +218,7 @@ export default async function TrainerPage() {
         <section className="mb-10">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
             <Home className="size-5 text-[#9e1357]" />
-            Huiswerk Sessie 1
+            Huiswerk Sessie 2
             <Badge variant="secondary" className="ml-1">
               {sortedHomework.filter((p) => p.entries.some((e) => e.promptUsed)).length}/{sortedHomework.length} bezig
             </Badge>
@@ -373,7 +373,7 @@ export default async function TrainerPage() {
               </Card>
             </Link>
 
-            <Link href="/workshop/2" className="group">
+            <Link href="/workshop/3" className="group">
               <Card className="transition-shadow
                                hover:shadow-md">
                 <CardContent className="flex items-center gap-3">
@@ -381,8 +381,8 @@ export default async function TrainerPage() {
                     <BookOpen className="size-5 text-[#9e1357]" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground">Workshop Sessie 2</p>
-                    <p className="text-xs text-muted-foreground">Bekijk de tweede workshop</p>
+                    <p className="text-sm font-medium text-foreground">Workshop Sessie 3</p>
+                    <p className="text-xs text-muted-foreground">Bekijk de derde workshop</p>
                   </div>
                   <ExternalLink className="size-4 text-muted-foreground transition-colors
                                            group-hover:text-foreground" />
