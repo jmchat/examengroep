@@ -42,7 +42,7 @@ export default function ExerciseList({
               particleCount: 150,
               spread: 80,
               origin: { y: 0.6 },
-              colors: ['#9e1357', '#e94b4c', '#054654', '#f1e8eb', '#FFD700'],
+              colors: ['#1d4ed8', '#e94b4c', '#054654', '#f1e8eb', '#FFD700'],
             })
             // Left side
             setTimeout(() => {
@@ -51,7 +51,7 @@ export default function ExerciseList({
                 angle: 60,
                 spread: 60,
                 origin: { x: 0, y: 0.65 },
-                colors: ['#9e1357', '#e94b4c', '#054654'],
+                colors: ['#1d4ed8', '#e94b4c', '#054654'],
               })
             }, 200)
             // Right side
@@ -61,7 +61,7 @@ export default function ExerciseList({
                 angle: 120,
                 spread: 60,
                 origin: { x: 1, y: 0.65 },
-                colors: ['#9e1357', '#e94b4c', '#054654'],
+                colors: ['#1d4ed8', '#e94b4c', '#054654'],
               })
             }, 400)
           }, 300)

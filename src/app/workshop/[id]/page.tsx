@@ -78,7 +78,7 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
   return (
     <div className="min-h-screen bg-secondary/30">
       {/* Header */}
-      <header className="bg-[#9e1357]">
+      <header className="bg-[#1d4ed8]">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3
                         sm:px-6">
           <div className="flex items-center gap-4">
@@ -130,7 +130,7 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
         {workshopSchedules[workshop.id] && (
           <section className="mb-8">
             <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              <Clock className="size-4 text-[#9e1357]" />
+              <Clock className="size-4 text-[#1d4ed8]" />
               Programma
             </h2>
             <Card>
@@ -144,8 +144,8 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
                         key={index}
                         className={`flex items-center gap-4 py-3 ${isPause ? 'bg-muted/50 -mx-4 px-4 rounded-lg' : ''}`}
                       >
-                        <div className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${isPause ? 'bg-muted' : 'bg-[#9e1357]/10'}`}>
-                          <Icon className={`size-4 ${isPause ? 'text-muted-foreground' : 'text-[#9e1357]'}`} />
+                        <div className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${isPause ? 'bg-muted' : 'bg-[#1d4ed8]/10'}`}>
+                          <Icon className={`size-4 ${isPause ? 'text-muted-foreground' : 'text-[#1d4ed8]'}`} />
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className={`text-sm font-medium ${isPause ? 'text-muted-foreground italic' : 'text-foreground'}`}>

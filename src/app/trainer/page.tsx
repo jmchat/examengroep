@@ -135,7 +135,7 @@ export default async function TrainerPage() {
   return (
     <div className="min-h-screen bg-secondary/30">
       {/* Header */}
-      <header className="bg-[#9e1357]">
+      <header className="bg-[#1d4ed8]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3
                         sm:px-6">
           <div className="flex items-center gap-4">
@@ -173,7 +173,7 @@ export default async function TrainerPage() {
         {/* Section 1: Programma */}
         <section className="mb-10">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
-            <Clock className="size-5 text-[#9e1357]" />
+            <Clock className="size-5 text-[#1d4ed8]" />
             Programma Sessie 3
           </h2>
 
@@ -189,8 +189,8 @@ export default async function TrainerPage() {
                       key={index}
                       className={`flex items-center gap-4 py-3 ${isPause ? 'bg-muted/50 -mx-4 px-4 rounded-lg' : ''}`}
                     >
-                      <div className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${isPause ? 'bg-muted' : 'bg-[#9e1357]/10'}`}>
-                        <Icon className={`size-4 ${isPause ? 'text-muted-foreground' : 'text-[#9e1357]'}`} />
+                      <div className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${isPause ? 'bg-muted' : 'bg-[#1d4ed8]/10'}`}>
+                        <Icon className={`size-4 ${isPause ? 'text-muted-foreground' : 'text-[#1d4ed8]'}`} />
                       </div>
 
                       <div className="min-w-0 flex-1">
@@ -217,7 +217,7 @@ export default async function TrainerPage() {
         {/* Section: Huiswerk Sessie 1 */}
         <section className="mb-10">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
-            <Home className="size-5 text-[#9e1357]" />
+            <Home className="size-5 text-[#1d4ed8]" />
             Huiswerk Sessie 2
             <Badge variant="secondary" className="ml-1">
               {sortedHomework.filter((p) => p.entries.some((e) => e.promptUsed)).length}/{sortedHomework.length} bezig
@@ -284,7 +284,7 @@ export default async function TrainerPage() {
         {/* Section 2: Deelnemersprofielen */}
         <section className="mb-10">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
-            <Users className="size-5 text-[#9e1357]" />
+            <Users className="size-5 text-[#1d4ed8]" />
             Deelnemersprofielen
             <Badge variant="secondary" className="ml-1">{participants.length}</Badge>
           </h2>
@@ -296,8 +296,8 @@ export default async function TrainerPage() {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex size-10 items-center justify-center rounded-full bg-[#9e1357]/10">
-                        <User className="size-5 text-[#9e1357]" />
+                      <div className="flex size-10 items-center justify-center rounded-full bg-[#1d4ed8]/10">
+                        <User className="size-5 text-[#1d4ed8]" />
                       </div>
                       <div>
                         <CardTitle>{participant.name}</CardTitle>
@@ -350,7 +350,7 @@ export default async function TrainerPage() {
         {/* Section 3: Quick links */}
         <section>
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
-            <ExternalLink className="size-5 text-[#9e1357]" />
+            <ExternalLink className="size-5 text-[#1d4ed8]" />
             Quick links
           </h2>
 
@@ -360,8 +360,8 @@ export default async function TrainerPage() {
               <Card className="transition-shadow
                                hover:shadow-md">
                 <CardContent className="flex items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-[#9e1357]/10">
-                    <PenTool className="size-5 text-[#9e1357]" />
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-[#1d4ed8]/10">
+                    <PenTool className="size-5 text-[#1d4ed8]" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium text-foreground">Wachtwoord Challenge</p>
@@ -377,8 +377,8 @@ export default async function TrainerPage() {
               <Card className="transition-shadow
                                hover:shadow-md">
                 <CardContent className="flex items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-[#9e1357]/10">
-                    <BookOpen className="size-5 text-[#9e1357]" />
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-[#1d4ed8]/10">
+                    <BookOpen className="size-5 text-[#1d4ed8]" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium text-foreground">Workshop Sessie 3</p>

@@ -53,7 +53,7 @@ function Field({
   return (
     <div>
       <div className="mb-1 flex items-center gap-1.5">
-        <Icon className="size-3.5 text-[#9e1357]" />
+        <Icon className="size-3.5 text-[#1d4ed8]" />
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
           {label}
         </p>
@@ -87,7 +87,7 @@ export default async function TrainerHomeworkDetailPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-secondary/30">
-      <header className="bg-[#9e1357]">
+      <header className="bg-[#1d4ed8]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3
                         sm:px-6">
           <div className="flex items-center gap-4">
@@ -113,8 +113,8 @@ export default async function TrainerHomeworkDetailPage({ params }: PageProps) {
                        sm:px-6">
         <div className="mb-8 flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-12 items-center justify-center rounded-full bg-[#9e1357]/10">
-              <User className="size-6 text-[#9e1357]" />
+            <div className="flex size-12 items-center justify-center rounded-full bg-[#1d4ed8]/10">
+              <User className="size-6 text-[#1d4ed8]" />
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
@@ -200,7 +200,7 @@ export default async function TrainerHomeworkDetailPage({ params }: PageProps) {
 
         <div className="mt-10 rounded-lg border bg-card p-4">
           <div className="flex items-start gap-3">
-            <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#9e1357]" />
+            <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#1d4ed8]" />
             <p className="text-sm text-muted-foreground">
               Deelnemers kunnen hun huiswerk blijven aanvullen tot en met sessie 2.
               Ververs deze pagina vlak voor de start om de meest recente inzendingen te zien.

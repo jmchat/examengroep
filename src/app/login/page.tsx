@@ -23,7 +23,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-6">
         {/* Brand header */}
         <div className="text-center">
-          <div className="mx-auto mb-6 inline-flex items-center justify-center rounded-xl bg-[#9e1357] px-6 py-3">
+          <div className="mx-auto mb-6 inline-flex items-center justify-center rounded-xl bg-[#1d4ed8] px-6 py-3">
             <span className="font-[family-name:var(--font-logo)] text-xl font-light tracking-[0.25em] uppercase text-white">
               Examengroep
             </span>
