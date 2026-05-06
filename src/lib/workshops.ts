@@ -665,16 +665,20 @@ export const workshops: Workshop[] = [
       },
       {
         id: 'artifacts',
-        title: 'Bonus: Claude bouwt iets voor je (artifacts)',
+        title: 'Bonus: Claude bouwt iets voor je (artifacts en visuals)',
         duration: '20 min',
         type: 'exercise',
         content: {
           intro:
-            'Claude kan niet alleen tekst geven, het kan ook een werkende mini-tool voor je bouwen. Een artifact is een interactief venster naast de chat: een quiz, formulier, calculator, dashboard, mindmap. Geen code-kennis nodig, je beschrijft wat je wilt en het staat er.',
+            'Claude kan niet alleen tekst geven, het kan ook iets werkends voor je bouwen. Soms in een apart venster naast de chat (een artifact), soms direct in de chat zelf (een visual). Geen code-kennis nodig, je beschrijft wat je wilt en het staat er.',
           sections: [
             {
-              heading: 'Wat is een artifact?',
-              text: 'Een artifact is een zelfstandige, werkende mini-app die Claude opent in een venster naast je gesprek. Het kan een interactieve quiz zijn, een rubric-invuller, een dashboard, een mindmap, een uitleg-pagina met klikbare elementen. Het blijft staan, je kunt het aanpassen door verder te chatten, en je kunt het delen via een link.\n\nClaude maakt onder water HTML/JavaScript voor je, maar dat zie je niet. Jij ziet alleen het werkende ding.',
+              heading: 'Twee smaken: artifact of visual',
+              text: 'Claude heeft twee manieren om iets werkends te tonen:\n\n1. Artifact (apart paneel)\nEen zelfstandige mini-app in een venster naast je gesprek. Bedoeld voor grotere dingen die je wilt bewaren, delen of doorontwikkelen: een complete quiz-tool, een rubric-invuller, een dashboard, een document. Blijft staan, te delen via een link, te bewerken door verder te chatten.\n\n2. Visual in de chat (sinds maart 2026, beta)\nEen interactief plaatje of mini-widget direct in het antwoord, naast de tekst. Bedoeld voor dingen die je nu wilt zien om iets te begrijpen: een grafiek, een tijdlijn, een diagram, een schuif waarmee je een scenario test. Tijdelijk: verandert mee met het gesprek. Klikken op de visual stuurt een vervolgvraag terug.\n\nClaude kiest zelf welke vorm past bij wat je vraagt: korte denk-hulp wordt een visual in de chat, een echte tool wordt een artifact in een apart paneel. Je kunt het ook expliciet vragen.',
+            },
+            {
+              heading: 'Wat zit eronder?',
+              text: 'Beide vormen zijn HTML, CSS en JavaScript die Claude voor je schrijft. Jij ziet alleen het werkende resultaat, niet de code. Het verschil zit in hoe het gerenderd wordt: artifact = apart venster, visual = inline in het gesprek.',
             },
             {
               heading: 'Waarom is dit anders dan een tekstantwoord?',
@@ -685,8 +689,8 @@ export const workshops: Workshop[] = [
               text: 'Voor intern werk:\n• Toetsmatrijs-builder met balanscheck\n• Niveau-checker, plak een vraag, krijg Bloom-niveau en leesbaarheid\n• Rubric-tool, open vraag invullen, cijfer berekenen op criteria\n• Promptbibliotheek-viewer, alle teamprompts doorzoekbaar\n• Validatie-checklist als stap-voor-stap wizard\n\nVoor scholen of leerlingen:\n• Interactieve oefenquiz uit een examenstuk, met auto-grading en hints\n• Beleidsuitleg als klikbaar stappenplan in plaats van 8 pagina PDF\n• Voorbeeldexamen-mockup om docenten te laten zien hoe iets afneemt\n\nVoor demo of sales:\n• Klantgerichte mockup van een examenproduct in 5 minuten, voor een pitch\n• Interactief jaarplan met scenario knoppen',
             },
             {
-              heading: 'Hoe roep je een artifact op?',
-              text: 'Je hoeft het woord "artifact" niet eens te gebruiken. Vraag gewoon om iets werkends:\n\n• "Bouw een interactieve quiz met 5 meerkeuzevragen over voedselveiligheid, met scoring aan het einde."\n• "Maak een tool waar ik een examenvraag plak en een oordeel terugkrijg op afleidersterkte en niveau."\n• "Maak een rekenmachine die op basis van X, Y en Z een score uitrekent."\n\nClaude herkent dat dit niet in tekst past en opent een artifact. Je kunt vragen om aanpassingen ("maak de knoppen groter", "voeg een reset-knop toe") en het verandert direct.',
+              heading: 'Hoe roep je een artifact of visual op?',
+              text: 'Je hoeft de termen "artifact" of "visual" niet te gebruiken. Vraag om iets werkends en Claude kiest zelf de vorm.\n\nVoor een artifact (apart paneel, deelbaar):\n• "Bouw een interactieve quiz met 5 meerkeuzevragen over voedselveiligheid, met scoring."\n• "Maak een tool waar ik een examenvraag plak en een oordeel terugkrijg op afleidersterkte en niveau."\n• "Maak een rekenmachine die op basis van X, Y en Z een score uitrekent."\n\nVoor een visual (in de chat, om iets te snappen):\n• "Teken dit als diagram."\n• "Laat zien hoe dit verandert over tijd."\n• "Maak een tijdlijn van het examenproces."\n• "Visualiseer deze tabel als grafiek met een schuifje voor het jaartal."\n\nIn beide gevallen kun je verder chatten om aanpassingen te vragen ("maak de knoppen groter", "voeg een reset-knop toe", "andere kleuren") en het verandert direct.',
             },
           ],
           steps: [
