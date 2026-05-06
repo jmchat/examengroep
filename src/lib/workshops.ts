@@ -664,6 +664,55 @@ export const workshops: Workshop[] = [
         },
       },
       {
+        id: 'artifacts',
+        title: 'Bonus: Claude bouwt iets voor je (artifacts)',
+        duration: '20 min',
+        type: 'exercise',
+        content: {
+          intro:
+            'Claude kan niet alleen tekst geven, het kan ook een werkende mini-tool voor je bouwen. Een artifact is een interactief venster naast de chat: een quiz, formulier, calculator, dashboard, mindmap. Geen code-kennis nodig, je beschrijft wat je wilt en het staat er.',
+          sections: [
+            {
+              heading: 'Wat is een artifact?',
+              text: 'Een artifact is een zelfstandige, werkende mini-app die Claude opent in een venster naast je gesprek. Het kan een interactieve quiz zijn, een rubric-invuller, een dashboard, een mindmap, een uitleg-pagina met klikbare elementen. Het blijft staan, je kunt het aanpassen door verder te chatten, en je kunt het delen via een link.\n\nClaude maakt onder water HTML/JavaScript voor je, maar dat zie je niet. Jij ziet alleen het werkende ding.',
+            },
+            {
+              heading: 'Waarom is dit anders dan een tekstantwoord?',
+              text: 'Tekst lees je en sluit je. Een artifact gebruik je.\n\nHet verschil tussen "Claude legt uit hoe een rubric werkt" en "Claude bouwt jou de rubric-invuller waar je vragen in plakt en cijfers uit krijgt".\n\nDrie redenen waarom dit krachtig is:\n• Stakeholders snappen een werkend prototype 10x sneller dan een specificatie\n• Je kunt iets weggeven (link) zonder ontwikkeltraject\n• Je drempelt zelf af: in 5 minuten heb je iets dat anders weken kost',
+            },
+            {
+              heading: 'Use cases voor jullie werk',
+              text: 'Voor intern werk:\n• Toetsmatrijs-builder met balanscheck\n• Niveau-checker, plak een vraag, krijg Bloom-niveau en leesbaarheid\n• Rubric-tool, open vraag invullen, cijfer berekenen op criteria\n• Promptbibliotheek-viewer, alle teamprompts doorzoekbaar\n• Validatie-checklist als stap-voor-stap wizard\n\nVoor scholen of leerlingen:\n• Interactieve oefenquiz uit een examenstuk, met auto-grading en hints\n• Beleidsuitleg als klikbaar stappenplan in plaats van 8 pagina PDF\n• Voorbeeldexamen-mockup om docenten te laten zien hoe iets afneemt\n\nVoor demo of sales:\n• Klantgerichte mockup van een examenproduct in 5 minuten, voor een pitch\n• Interactief jaarplan met scenario knoppen',
+            },
+            {
+              heading: 'Hoe roep je een artifact op?',
+              text: 'Je hoeft het woord "artifact" niet eens te gebruiken. Vraag gewoon om iets werkends:\n\n• "Bouw een interactieve quiz met 5 meerkeuzevragen over voedselveiligheid, met scoring aan het einde."\n• "Maak een tool waar ik een examenvraag plak en een oordeel terugkrijg op afleidersterkte en niveau."\n• "Maak een rekenmachine die op basis van X, Y en Z een score uitrekent."\n\nClaude herkent dat dit niet in tekst past en opent een artifact. Je kunt vragen om aanpassingen ("maak de knoppen groter", "voeg een reset-knop toe") en het verandert direct.',
+            },
+          ],
+          steps: [
+            {
+              label: 'Stap 1: Demo, eenvoudig (5 min)',
+              description:
+                'Eerst laat ik live zien hoe het werkt. We bouwen samen een mini-quiz over een onderwerp uit jullie domein, in een paar zinnen prompt.',
+              example:
+                'Bouw een interactieve quiz met 4 meerkeuzevragen over hygiene-eisen in de horeca. Geef per vraag direct feedback bij een fout antwoord en toon een eindscore.',
+            },
+            {
+              label: 'Stap 2: Live op verzoek (10 min)',
+              description:
+                'Een van jullie noemt een eigen werkprobleem. We gebruiken de interview-techniek (sessie 3 thema) om Claude te laten doorvragen wat het precies moet bouwen, en het verschijnt live op het scherm.',
+            },
+            {
+              label: 'Stap 3: Korte reflectie (5 min)',
+              description:
+                'Wat zou jij in jouw werk willen hebben als artifact? Ieder noteert 1 idee. Niet uitvoeren nu, wel meenemen naar de borging.',
+            },
+          ],
+          bonusTip:
+            'De combinatie sessie 3 thema + artifacts is sterk: laat Claude jou via interview vragen wat de tool precies moet doen, voor wie, welke knoppen, welke output. Daarna bouwt het. Hetzelfde patroon dat je net leerde, maar nu krijg je een tool in plaats van een tekst.',
+        },
+      },
+      {
         id: 'borging',
         title: 'Borging: hoe houden we dit vol?',
         duration: '30 min',
