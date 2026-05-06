@@ -14,7 +14,7 @@ export default async function ChallengeOverviewPage() {
 
   return (
     <div className="min-h-screen bg-secondary/30">
-      <header className="bg-[#9e1357]">
+      <header className="bg-[#1d4ed8]">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3
                         sm:px-6">
           <div className="flex items-center gap-4">
